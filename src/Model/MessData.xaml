@@ -1,0 +1,124 @@
+﻿<Window x:Class="MnS.MessData"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MnS"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Title="MessData" Height="400" Width="600"
+        Icon="\assets\icons\MD.ico">
+    <Window.Resources>
+        <Style TargetType="DatePickerTextBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DatePickerTextBox}">
+                        <TextBox Text="{Binding Path=SelectedDate, StringFormat={}{0:dd/MM/yyyy}, RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}"
+                                 VerticalAlignment="Center"
+                                 Background="White"
+                                 Opacity="0.5"
+                                 BorderThickness="{TemplateBinding BorderThickness}"
+                                 BorderBrush="{TemplateBinding BorderBrush}"
+                                 Foreground="Black"
+                                 FontWeight="DemiBold"
+                                 HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                 VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                 IsReadOnly="{TemplateBinding IsReadOnly}"
+                                 Padding="{TemplateBinding Padding}"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid x:Name="mes_DouGrid3" Grid.Row="4" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="7" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Background="LightSkyBlue">
+            <Label Content="LIST FILES" FontSize="23" FontWeight="DemiBold" FontFamily="Calibri" Margin="0,150,478,-12">
+                <Label.RenderTransform>
+                    <TransformGroup>
+                        <RotateTransform Angle="-90"/>
+                    </TransformGroup>
+                </Label.RenderTransform>
+            </Label>
+            <Button Content="Clear" FontSize="12" FontWeight="DemiBold" FontFamily="Calibri" Margin="0,0,10,10" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Click="ClearData" HorizontalAlignment="Right" Width="90" Height="20" VerticalAlignment="Bottom"/>
+            <ListView x:Name="mes_List" Background="gray" Opacity="0.7" Foreground="Black" FontFamily="Calibri" FontWeight="DemiBold" Margin="35,10,105,10" SelectionChanged="ListViewSelect"/>
+            <Button x:Name="cvt_but" Content="Convert xlsx" FontSize="11" FontWeight="DemiBold" FontFamily="Calibri" Margin="0,10,10,0" Click="ExportExcel" HorizontalAlignment="Right" Width="90" Height="23" VerticalAlignment="Top"/>
+            <Button x:Name="line_but" Content="Line Chart" FontSize="11" FontWeight="DemiBold" FontFamily="Calibri" Margin="0,38,10,0" HorizontalAlignment="Right" Width="90" Height="23" VerticalAlignment="Top" Click="CreateLC"/>
+            <Button x:Name="box_but" Content="Box Plot" FontSize="11" FontWeight="DemiBold" FontFamily="Calibri" Margin="0,66,10,0" HorizontalAlignment="Right" Width="90" Height="23" VerticalAlignment="Top" Click="CreateBP"/>
+            <Button Content="Files Folder" FontSize="12" FontWeight="DemiBold" FontFamily="Calibri" Margin="0,0,10,35" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Click="OpenFolder" HorizontalAlignment="Right" Width="90" Height="20" VerticalAlignment="Bottom"/>
+        </Grid>
+        <Grid x:Name="mes_SgGrid1" Grid.RowSpan="1" Grid.ColumnSpan="7" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightSkyBlue">
+            <Button x:Name="mes_get" Content="Choose file" FontSize="12" FontWeight="DemiBold" FontFamily="Calibri" Margin="10,6,0,19" Width="67"  HorizontalAlignment="Left" Click="OpenFiles"/>
+            <TextBox x:Name="msPath" KeyDown="Search_KeyDown" Margin="82,6,10,19" FontFamily="Calibri" FontWeight="DemiBold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="DimGray" Foreground="White" Opacity="0.7" IsReadOnly="True"/>
+        </Grid>
+        <Grid x:Name="mes_SgGrid2" Grid.Row="3" Grid.RowSpan="1" Grid.ColumnSpan="7" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightPink">
+            <Label Content="Min value" FontSize="11" FontWeight="DemiBold" FontFamily="Calibri" Margin="35,22,0,0" HorizontalAlignment="Left" Width="62" Height="23" VerticalAlignment="Top"/>
+            <Label Content="Max value" FontSize="11" FontWeight="DemiBold" FontFamily="Calibri" Margin="252,20,0,0" HorizontalAlignment="Left" Width="57" Height="23" VerticalAlignment="Top"/>
+            <Label Content="Unit" FontSize="11" FontWeight="DemiBold" FontFamily="Calibri" Margin="463,22,0,0" HorizontalAlignment="Left" Width="32" Height="22" VerticalAlignment="Top" VerticalContentAlignment="Center"/>
+            <TextBox x:Name="ms_minv" Height="18" Margin="102,24,353,6" Background="DimGray" Foreground="White" FontSize="12" FontWeight="DemiBold" FontFamily="Calibri" Opacity="0.5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" IsReadOnly="False"/>
+            <TextBox x:Name="ms_maxv" Height="18" Margin="314,24,142,6" Background="DimGray" Foreground="White" FontSize="12" FontWeight="DemiBold" FontFamily="Calibri" Opacity="0.5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" IsReadOnly="False"/>
+            <TextBox x:Name="ms_unitv" Height="18" Margin="500,24,10,6" Background="DimGray" Foreground="White" FontSize="12" FontWeight="DemiBold" FontFamily="Calibri" Opacity="0.5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" IsReadOnly="False"/>
+            <TextBox x:Name="ms_Section" Margin="102,1,10,28" Background="DimGray" Foreground="White" FontSize="12" FontWeight="DemiBold" FontFamily="Calibri" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" IsReadOnly="True"/>
+            <Label Content="PSL Description" FontSize="11" FontWeight="DemiBold" FontFamily="Calibri" Margin="10,0,0,0" HorizontalAlignment="Left" Width="87" Height="23" VerticalAlignment="Top"/>
+        </Grid>
+        <Grid x:Name="mes_DouGrid1" Grid.Row="1" Grid.RowSpan="1" Grid.ColumnSpan="7" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightSeaGreen">
+            <DatePicker x:Name="mes_Frdate" Margin="83,1,388.6,25.4" Height="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch"/>
+            <DatePicker x:Name="mes_Todate" Margin="83,25,388.6,1.4" Height="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch"/>
+            <Label Content="From date" FontSize="12" FontWeight="DemiBold" FontFamily="Calibri" Margin="10,0,0,24.4" HorizontalAlignment="Left" Width="68"/>
+            <Label Content="To date" FontSize="12" FontWeight="DemiBold" FontFamily="Calibri" Margin="10,20,0,0.4" HorizontalAlignment="Left" Width="68"/>
+            <TextBox x:Name="msItem" KeyDown="Search_KeyDown" Margin="281,3,105,22" IsReadOnly="False" FontSize="12" FontWeight="DemiBold" FontFamily="Calibri" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="DimGray" Foreground="White" Opacity="0.7"/>
+            <Label Content="Item search" FontSize="12" FontWeight="DemiBold" FontFamily="Calibri" Margin="212,2,0,22" HorizontalAlignment="Left" Width="68"/>
+            <Button x:Name="mes_getall" Content="Collect Data" FontSize="11" FontWeight="DemiBold" FontFamily="Calibri" Margin="0,10,10,10" HorizontalAlignment="Right" Width="90" Click="CollectData"/>
+            <Label Content="SMT" FontSize="11" FontWeight="DemiBold" FontFamily="Calibri" Margin="255,24,0,0" HorizontalAlignment="Left" Width="33" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Top"/>
+            <Label Content="FA" FontSize="11" FontWeight="DemiBold" FontFamily="Calibri" Margin="325,24,0,0" HorizontalAlignment="Left" Width="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Top"/>
+            <Label Content="PA" FontSize="11" FontWeight="DemiBold" FontFamily="Calibri" Margin="382,24,0,0" HorizontalAlignment="Left" Width="23" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="23"/>
+            <Label Content="Other" FontSize="11" FontWeight="DemiBold" FontFamily="Calibri" Margin="445,23,0,0" HorizontalAlignment="Left" Width="39"/>
+            <CheckBox x:Name="ms_PA" Margin="366,28,0,0" IsChecked="False" HorizontalAlignment="Left" VerticalAlignment="Top" Checked="PA_Checked"/>
+            <CheckBox x:Name="ms_SMT" Margin="239,28,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" RenderTransformOrigin="-0.783,-0.47" Checked="SMT_Checked"/>
+            <CheckBox x:Name="ms_FA" Margin="309,28,0,0" IsChecked="True" HorizontalAlignment="Left" VerticalAlignment="Top" Checked="FA_Checked"/>
+            <CheckBox x:Name="ms_HV" Margin="429,28,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Checked="HV_Checked"/>
+
+        </Grid>
+        <Grid x:Name="mes_DouGrid2" Grid.Row="2" Grid.RowSpan="1" Grid.ColumnSpan="7" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightPink">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="136*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="447*"/>
+                <ColumnDefinition Width="7*"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="PSL" FontSize="11" FontWeight="DemiBold" FontFamily="Calibri" Margin="36,0,0,0" HorizontalAlignment="Left" Width="27" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" RenderTransformOrigin="0.456,0.566" VerticalAlignment="Center" Grid.Column="2"/>
+            <Label Content="Test Prog" FontSize="11" FontWeight="DemiBold" FontFamily="Calibri" Margin="10,0,0,0" HorizontalAlignment="Left" Width="54" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
+            <ComboBox x:Name="ms_PSL" FontFamily="Calibri" FontSize="12" FontWeight="DemiBold" Margin="68,10,312,10" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="2" SelectionChanged="PSL_SelectionChanged"/>
+            <ComboBox x:Name="ms_TestProg" FontFamily="Calibri" FontSize="12" FontWeight="DemiBold" Margin="68,10,411,10" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" SelectionChanged="ProgSelect_SelectionChanged" Grid.ColumnSpan="3"/>
+            <Label Content="Test Step" FontSize="11" FontWeight="DemiBold" FontFamily="Calibri" HorizontalAlignment="Left" Width="51" Height="24" VerticalAlignment="Center" Grid.Column="2" Margin="140,0,0,0"/>
+            <ComboBox x:Name="ms_Step" FontFamily="Calibri" FontSize="12" FontWeight="DemiBold" Margin="196,10,107,10" SelectionChanged="MsStep_SelectionChanged" Grid.Column="2"/>
+            <CheckBox x:Name="ms_BoxAll" Margin="412,0,0,0" IsChecked="true" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="2" ToolTip="Only filter with Chart"/>
+            <Label Content="Only Passed" FontSize="11" FontWeight="DemiBold" FontFamily="Calibri" Margin="341,10,0,10" HorizontalAlignment="Left" Width="71" RenderTransformOrigin="1.037,-0.779" Grid.Column="2" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+        </Grid>
+        <CheckBox x:Name="msMulti" Checked="MultiChecked" Margin="39,27,23,3" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Content="Multiple Select" FontSize="11" FontWeight="DemiBold" FontFamily="Calibri" Margin="56,25,0,0" HorizontalAlignment="Left" Width="100" Height="23" Foreground="Black" Grid.ColumnSpan="2" Grid.Column="2"/>
+        <CheckBox x:Name="msDoub" Checked="DoubleChecked" Margin="80,27,71,3" Grid.Column="3" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <Label Content="Item Search" FontSize="11" FontWeight="DemiBold" FontFamily="Calibri" Margin="10,25,0,0" HorizontalAlignment="Left" Width="100" Height="23" Foreground="Black" Grid.ColumnSpan="2" Grid.Column="4"/>
+        <CheckBox x:Name="msSingle" Checked="SingleChecked" IsChecked="True" Margin="2,27,59,3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Content="Single File" FontSize="11" FontWeight="DemiBold" FontFamily="Calibri" Margin="19,25,0,0" HorizontalAlignment="Left" Width="100" Height="23" Foreground="Black" Grid.ColumnSpan="2" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" VerticalAlignment="Center"/>
+    </Grid>
+</Window>

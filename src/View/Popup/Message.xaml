@@ -1,0 +1,87 @@
+﻿<Window x:Class="MnS.Message"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Height="476.573" Width="800"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None">
+    <Window.Resources>
+        <Style TargetType="{x:Type DataGrid}">
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="Wheat"/>
+            <Setter Property="FontStyle" Value="Normal"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+        </Style>
+        <Style TargetType="{x:Type DataGridRow}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        <Style TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="Orange"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="{x:Type DataGridCell}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="BorderThickness" Value="0.5"/>
+        </Style>
+        <Style TargetType="{x:Type DataGridRowHeader}">
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="Wheat"/>
+        </Style>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Background" Value="DimGray"/>
+            <Setter Property="Foreground" Value="Wheat"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="2">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" To="DarkGray" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Image Source="\assets\images\P+F.jpg" Stretch="Fill"/>
+        <TextBlock x:Name="note_1" Text="" FontStyle="Italic" FontWeight="DemiBold" Margin="18,0,10,42" TextWrapping="WrapWithOverflow" Height="18" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+        <Grid x:Name="userGridView" Visibility="Visible" Margin="200,10,10,76" Background="Azure" Opacity="0.7">
+            <TextBlock x:Name="til" Text="" FontSize="16" FontWeight="Bold"  Foreground="Black" Margin="10,10,10,346" TextWrapping="WrapWithOverflow" TextAlignment="Center"/>
+            <TextBlock x:Name="cont" Text="" FontSize="16" FontWeight="DemiBold" Foreground="Black" Margin="10,50,10,30" TextWrapping="WrapWithOverflow" TextAlignment="Justify"/>
+        </Grid>
+        <Grid x:Name="SurveyGridView" Visibility="Hidden" Margin="200,10,10,76" Background="Azure" Opacity="0.7">
+            <Label Content="User Name" FontWeight="DemiBold" Margin="44,83,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="141"/>
+            <Label Content="Department" FontWeight="DemiBold" Margin="44,116,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="141"/>
+            <Button x:Name="btnSubmit" Content="Submit" Margin="0,147,32,0" RenderTransformOrigin="1.673,0.386" Cursor="Hand" Click="btnSubmit_Click" Height="25" VerticalAlignment="Top" HorizontalAlignment="Right" Width="125"/>
+            <TextBox x:Name="name" Text="Your fullname" GotFocus="name_GotFocus" LostFocus="name_LostFocus" FontSize="14" Height="26" VerticalAlignment="Top" Margin="190,83,32,0" VerticalContentAlignment="Center"/>
+            <TextBox x:Name="des" Text="Your department" GotFocus="des_GotFocus" LostFocus="des_LostFocus" FontSize="14" Height="26" VerticalAlignment="Top" Margin="190,116,32,0" VerticalContentAlignment="Center"/>
+            <Button x:Name="btnSurvey" Content="Conduct survey" Margin="0,278,32,0" RenderTransformOrigin="1.673,0.386" Cursor="Hand" Click="btnServey_Click" Height="24" VerticalAlignment="Top" HorizontalAlignment="Right" Width="125"/>
+            <TextBlock x:Name="note" Text="" FontWeight="DemiBold" Margin="51,48,32,0" Height="26" VerticalAlignment="Top" TextWrapping="WrapWithOverflow"/>
+            <TextBlock x:Name="note_2" Text="" FontWeight="DemiBold" Margin="44,221,32,0" Height="52" VerticalAlignment="Top" TextWrapping="WrapWithOverflow"/>
+        </Grid>
+        <Button x:Name="btnNext" Content="Next" Margin="0,0,196,69" RenderTransformOrigin="1.673,0.386" HorizontalAlignment="Right" Width="125" Height="25" VerticalAlignment="Bottom" Cursor="Hand" Click="btnNext_Click"/>
+        <Button x:Name="btnClose" Content="Close" Margin="0,0,42,69" RenderTransformOrigin="1.673,0.386" HorizontalAlignment="Right" Width="124" Height="25" VerticalAlignment="Bottom" Cursor="Hand" Click="btnClose_Click"/>
+        <TextBlock Text="M+S Power Tool" FontWeight="Bold" FontSize="22" Foreground="White" VerticalAlignment="Top" Margin="10,36,0,0" TextAlignment="Center" Height="40" HorizontalAlignment="Left" Width="172"/>
+        <TextBlock Text="New Version" FontSize="20" Foreground="White" VerticalAlignment="Top" Margin="10,89,0,0" TextAlignment="Center" Height="24" HorizontalAlignment="Left" Width="172"/>
+        <TextBlock x:Name="vs" Text="1.0.2.2" FontSize="20" Foreground="White" VerticalAlignment="Top" Margin="31,116,0,0" TextAlignment="Center" Height="33" HorizontalAlignment="Left" Width="130" FontWeight="Bold"/>
+    </Grid>
+</Window>

@@ -1,0 +1,76 @@
+﻿<Window x:Class="MnS.Clock"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Clocking Time" Height="560" Width="750"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Background="LightSeaGreen"
+        Icon="\assets\icons\CL.png">
+    <Grid>
+        <Button x:Name="Clk_Open" Content="Choose file" Foreground="White" Margin="10,10,0,0" FontSize="12" FontWeight="DemiBold" HorizontalAlignment="Left" Width="69" Height="27" VerticalAlignment="Top" Click="ClkOpen_Click"/>
+        <TextBox x:Name="clk_link" IsReadOnly="True" Margin="84,10,10,0" Background="White" Height="27" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+        <ComboBox x:Name="clk_name" SelectedIndex="0" Margin="10,42,425,0" Height="24" VerticalAlignment="Top">
+            <ComboBoxItem Content="Choose Name"/>
+        </ComboBox>
+        <ComboBox x:Name="clk_week" SelectedIndex="0" Margin="0,42,135,0" HorizontalAlignment="Right" Width="120" Height="24" VerticalAlignment="Top" SelectionChanged="Week_SelectionChanged">
+            <ComboBoxItem Content="Choose Week"/>
+        </ComboBox>
+        <TextBox x:Name="clk_total" IsReadOnly="True" Background="White" Margin="0,42,59,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Right" Width="71" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        <Label Content="hours" FontSize="13" FontWeight="DemiBold" Foreground="White" Margin="0,42,10,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Right" Width="49"/>
+        <DataGrid x:Name="clk_grid" Margin="10,83,10,103"/>
+        <ComboBox x:Name="clk_cate" SelectedIndex="0" Margin="10,0,0,74" SelectionChanged="Week_SelectionChanged" HorizontalAlignment="Left" Width="120" Height="24" VerticalAlignment="Bottom">
+            <ComboBoxItem Content="Category"/>
+            <ComboBoxItem Content="Calibration"/>
+            <ComboBoxItem Content="Maintenance"/>
+            <ComboBoxItem Content="TOPdesk Issue"/>
+            <ComboBoxItem Content="TOPdesk Service"/>
+            <ComboBoxItem Content="Project"/>
+            <ComboBoxItem Content="ECN/ETN"/>
+            <ComboBoxItem Content="Internal matters"/>
+            <ComboBoxItem Content="Others"/>
+        </ComboBox>
+        <ComboBox x:Name="clk_cc" SelectedIndex="0" Margin="135,0,0,74" SelectionChanged="Week_SelectionChanged" HorizontalAlignment="Left" Width="145" Height="24" VerticalAlignment="Bottom">
+            <ComboBoxItem Content="Cost-Center"/>
+            <ComboBoxItem Content="5100 Photo-1"/>
+            <ComboBoxItem Content="5120 Photo-2"/>
+            <ComboBoxItem Content="5140 Photo-3"/>
+            <ComboBoxItem Content="5160 Photo-4"/>
+            <ComboBoxItem Content="5170 Photo-5"/>
+            <ComboBoxItem Content="5175 Photo-5B"/>
+            <ComboBoxItem Content="5180 Photo-6"/>
+            <ComboBoxItem Content="5185 Photo-7"/>
+            <ComboBoxItem Content="5190 Photo-8"/>
+            <ComboBoxItem Content="5200 EMS-1"/>
+            <ComboBoxItem Content="5210 EMS-1B"/>
+            <ComboBoxItem Content="5220 EMS-2"/>
+            <ComboBoxItem Content="5240 EMS-3"/>
+            <ComboBoxItem Content="5260 EMS-4"/>
+            <ComboBoxItem Content="5300 VAZ"/>
+            <ComboBoxItem Content="5800 SMT"/>
+            <ComboBoxItem Content="5820 SMT-MVI"/>
+            <ComboBoxItem Content="5821 SMT-TEST"/>
+            <ComboBoxItem Content="5824 SMT-THT"/>
+            <ComboBoxItem Content="5900 CONNECTOR"/>
+            <ComboBoxItem Content="5920 MOLDING"/>
+            <ComboBoxItem Content="5960 SLIP-PRINTING"/>
+            <ComboBoxItem Content="4000 TPU-WORKER"/>
+            <ComboBoxItem Content="4031 M+S"/>
+            <ComboBoxItem Content="4020 CALIBRATION"/>
+            <ComboBoxItem Content="5810 SMT"/>
+            <ComboBoxItem Content="5811 SMT"/>
+            <ComboBoxItem Content="5830 SMT"/>
+            <ComboBoxItem Content="6100 INTERFACE"/>
+        </ComboBox>
+        <Label Content="Incident No." Foreground="White" FontSize="14" FontWeight="DemiBold" Margin="22,0,0,30" HorizontalAlignment="Left" Width="96" Height="27" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="clk_incident" Margin="135,0,10,42" Background="White" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Height="27" VerticalAlignment="Bottom"/>
+        <Button x:Name="Clk_Add" Content="Add New" Foreground="White" Margin="0,0,10,10" FontSize="12" FontWeight="DemiBold" Click="Add_Click" Height="27" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="69"/>
+        <Button x:Name="Clk_Insert" Content="Insert" Foreground="White" Margin="0,0,84,10" FontSize="12" FontWeight="DemiBold" Click="Insert_Click" HorizontalAlignment="Right" Width="69" Height="27" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="clk_clocktime" Margin="581,0,64,72" Background="White" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Height="27" VerticalAlignment="Bottom"/>
+        <Label Content="Clock time" Foreground="White" FontSize="14" FontWeight="DemiBold" Margin="0,0,174,71" Height="27" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="81"/>
+        <Label Content="hours" Foreground="White" FontSize="14" FontWeight="DemiBold" Margin="0,0,10,71" Height="27" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="49"/>
+        <Button x:Name="Clk_Remove" Content="Remove" Foreground="White" Margin="0,0,158,10" FontSize="12" FontWeight="DemiBold" Click="Remove_Click" HorizontalAlignment="Right" Width="69" Height="27" VerticalAlignment="Bottom"/>
+        <ComboBox x:Name="clk_isinsident" SelectedIndex="0" Margin="135,0,0,13" HorizontalAlignment="Left" Width="383" Height="24" VerticalAlignment="Bottom">
+            <ComboBoxItem Content="Incident"/>
+        </ComboBox>
+    </Grid>
+</Window>

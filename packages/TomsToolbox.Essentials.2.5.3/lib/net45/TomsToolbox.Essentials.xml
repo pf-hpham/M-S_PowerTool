@@ -1,0 +1,2019 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+    <assembly>
+        <name>TomsToolbox.Essentials</name>
+    </assembly>
+    <members>
+        <member name="T:TomsToolbox.Essentials.AssemblyExtensions">
+            <summary>
+            Extension methods for assemblies.
+            </summary>
+        </member>
+        <member name="M:TomsToolbox.Essentials.AssemblyExtensions.GetAssemblyDirectory(System.Reflection.Assembly)">
+            <summary>
+            Gets the directory in which the given assembly is stored.
+            <p /><c>[NotNull]</c></summary>
+            <param name="assembly">The assembly.<p /><c>[NotNull]</c></param>
+            <returns>The directory in which the given assembly is stored.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.AssemblyExtensions.GetAssemblyDirectory(System.Reflection.AssemblyName)">
+            <summary>
+            Gets the directory in which the given assembly is stored.
+            <p /><c>[NotNull]</c></summary>
+            <param name="assemblyName">The assembly.<p /><c>[NotNull]</c></param>
+            <returns>The directory in which the given assembly is stored.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.AssemblyExtensions.GeneratePackUri(System.Reflection.Assembly)">
+            <summary>
+            Generates the pack URI according to <see href="https://msdn.microsoft.com/library/aa970069.aspx" /> for the specified assembly.
+            <p /><c>[NotNull]</c></summary>
+            <param name="assembly">The assembly containing the resource.<p /><c>[NotNull]</c></param>
+            <returns>The pack URI.</returns>
+            <remarks>
+            The URI is in the format "pack://application:,,,/ReferencedAssembly;component/"
+            </remarks>
+        </member>
+        <member name="M:TomsToolbox.Essentials.AssemblyExtensions.GeneratePackUri(System.Reflection.Assembly,System.String)">
+            <summary>
+            Generates the pack URI according to <see href="https://msdn.microsoft.com/library/aa970069.aspx" /> for the resource in the specified assembly.
+            <p /><c>[NotNull]</c></summary>
+            <param name="assembly">The assembly containing the resource.<p /><c>[NotNull]</c></param>
+            <param name="relativeUri">The relative URI of the resource.<p /><c>[NotNull]</c></param>
+            <returns>
+            The pack URI.
+            </returns>
+            <remarks>
+            The URI is in the format "pack://application:,,,/ReferencedAssembly;component/RelativeUri"
+            </remarks>
+        </member>
+        <member name="M:TomsToolbox.Essentials.AssemblyExtensions.GeneratePackUri(System.Reflection.Assembly,System.Uri)">
+            <summary>
+            Generates the pack URI according to <see href="https://msdn.microsoft.com/library/aa970069.aspx" /> for the resource in the specified assembly.
+            <p /><c>[NotNull]</c></summary>
+            <param name="assembly">The assembly containing the resource.<p /><c>[NotNull]</c></param>
+            <param name="relativeUri">The relative URI of the resource.<p /><c>[NotNull]</c></param>
+            <returns>
+            The pack URI.
+            </returns>
+            <remarks>
+            The URI is in the format "pack://application:,,,/ReferencedAssembly;component/RelativeUri"
+            </remarks>
+        </member>
+        <member name="T:TomsToolbox.Essentials.AutoWeakIndexer`2">
+            <summary>
+            A thread safe, <see cref="T:System.Collections.Generic.Dictionary`2" /> like implementation that populates it's content on demand, i.e. calling indexer[key] will never return null.
+            The cache has only weak references to the values, so the values may come and go.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TValue">The type of the value.</typeparam>
+            <remarks>
+            This implementation is thread safe; the draw back is that generating new items is slow, so this type is not suitable for caching a large amount of items.
+            </remarks>
+        </member>
+        <member name="M:TomsToolbox.Essentials.AutoWeakIndexer`2.#ctor(System.Func{`0,`1},System.Collections.Generic.IEqualityComparer{`0})">
+            <summary>
+            Initializes a new instance of the <see cref="T:TomsToolbox.Essentials.AutoWeakIndexer`2" /> class.
+            </summary>
+            <param name="generator">The generator.<p /><c>[NotNull]</c></param>
+            <param name="comparer">The comparer.<p /><c>[CanBeNull]</c></param>
+        </member>
+        <member name="P:TomsToolbox.Essentials.AutoWeakIndexer`2.Item(`0)">
+            <summary>
+            Gets the value associated with the specified key.
+            <p /><c>[NotNull]</c></summary>
+            <param name="key">The key of the value to get or set.</param>
+            <returns>
+            The value associated with the specified key. If the specified key is not found, or the value at the key is null,
+            the item generator is called to create a new element with the specified key.
+            </returns>
+            <exception cref="T:System.InvalidOperationException">The generator did not generate a valid item.</exception>
+        </member>
+        <member name="P:TomsToolbox.Essentials.AutoWeakIndexer`2.Values">
+            <summary>
+            Gets a collection containing the values in the <see cref="T:TomsToolbox.Essentials.AutoWeakIndexer`2" />.
+            <p /><c>[ItemNotNull, CanBeNull]</c></summary>
+            <returns>
+            A <see cref="T:System.Collections.Generic.ICollection`1" /> containing the values in the <see cref="T:TomsToolbox.Essentials.AutoWeakIndexer`2" />.
+            </returns>
+        </member>
+        <member name="P:TomsToolbox.Essentials.AutoWeakIndexer`2.Keys">
+            <summary>
+            Gets a collection containing the keys in the <see cref="T:TomsToolbox.Essentials.AutoWeakIndexer`2" />.
+            <p /><c>[ItemNotNull, NotNull]</c></summary>
+            <returns>
+            A <see cref="T:System.Collections.Generic.ICollection`1" /> containing the keys in the <see cref="T:TomsToolbox.Essentials.AutoWeakIndexer`2" />.
+            </returns>
+        </member>
+        <member name="P:TomsToolbox.Essentials.AutoWeakIndexer`2.Comparer">
+            <summary>
+            Gets the <see cref="T:System.Collections.Generic.IEqualityComparer`1" /> that is used to determine equality of keys for the dictionary.
+            <p /><c>[NotNull]</c></summary>
+            <returns>
+            The <see cref="T:System.Collections.Generic.IEqualityComparer`1" /> generic interface implementation that is used to determine equality of keys for the current <see cref="T:TomsToolbox.Essentials.AutoWeakIndexer`2" /> and to provide hash values for the keys.
+            </returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.AutoWeakIndexer`2.TryGetValue(`0,`1@)">
+            <summary>
+            Gets the value associated with the specified key.
+            </summary>
+            <returns>
+            true if the <see cref="T:TomsToolbox.Essentials.AutoWeakIndexer`2" /> contains an element with the specified key; otherwise, false.
+            </returns>
+            <param name="key">The key of the value to get.<p /><c>[NotNull]</c></param>
+            <param name="value">When this method returns, contains the value associated with the specified key, if the key is found; otherwise, the default value for the type of the <paramref name="value" /> parameter. This parameter is passed uninitialized.<p /><c>[CanBeNull]</c></param>
+        </member>
+        <member name="M:TomsToolbox.Essentials.AutoWeakIndexer`2.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the items of the <see cref="T:TomsToolbox.Essentials.AutoWeakIndexer`2" />.
+            </summary>
+            <returns>
+            An enumerator for the <see cref="T:TomsToolbox.Essentials.AutoWeakIndexer`2" />.
+            </returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.AutoWeakIndexer`2.ContainsKey(`0)">
+            <summary>
+            Determines whether the <see cref="T:TomsToolbox.Essentials.AutoWeakIndexer`2" /> contains the specified key.
+            </summary>
+            <returns>
+            true if the <see cref="T:TomsToolbox.Essentials.AutoWeakIndexer`2" /> contains an element with the specified key; otherwise, false.
+            </returns>
+            <param name="key">The key to locate in the <see cref="T:TomsToolbox.Essentials.AutoWeakIndexer`2" />.<p /><c>[NotNull]</c></param>
+        </member>
+        <member name="M:TomsToolbox.Essentials.AutoWeakIndexer`2.Clear">
+            <summary>
+            Removes all keys and values from the <see cref="T:TomsToolbox.Essentials.AutoWeakIndexer`2" />.
+            </summary>
+        </member>
+        <member name="T:TomsToolbox.Essentials.BinaryOperation">
+            <summary>
+            Binary operations supported by the <see cref="T:TomsToolbox.Essentials.BinaryOperationProcessor" />
+            </summary>
+        </member>
+        <member name="F:TomsToolbox.Essentials.BinaryOperation.Addition">
+            <summary>
+            The addition operation.
+            </summary>
+        </member>
+        <member name="F:TomsToolbox.Essentials.BinaryOperation.Subtraction">
+            <summary>
+            The subtraction operation.
+            </summary>
+        </member>
+        <member name="F:TomsToolbox.Essentials.BinaryOperation.Multiply">
+            <summary>
+            The multiply operation.
+            </summary>
+        </member>
+        <member name="F:TomsToolbox.Essentials.BinaryOperation.Division">
+            <summary>
+            The division operation.
+            </summary>
+        </member>
+        <member name="F:TomsToolbox.Essentials.BinaryOperation.Equality">
+            <summary>
+            The equality operation.
+            </summary>
+        </member>
+        <member name="F:TomsToolbox.Essentials.BinaryOperation.Inequality">
+            <summary>
+            The inequality operation.
+            </summary>
+        </member>
+        <member name="F:TomsToolbox.Essentials.BinaryOperation.GreaterThan">
+            <summary>
+            The greater than operation.
+            </summary>
+        </member>
+        <member name="F:TomsToolbox.Essentials.BinaryOperation.LessThan">
+            <summary>
+            The less than operation.
+            </summary>
+        </member>
+        <member name="F:TomsToolbox.Essentials.BinaryOperation.GreaterThanOrEqual">
+            <summary>
+            The greater than or equal operation.
+            </summary>
+        </member>
+        <member name="F:TomsToolbox.Essentials.BinaryOperation.LessThanOrEqual">
+            <summary>
+            The less than or equal operation.
+            </summary>
+        </member>
+        <member name="T:TomsToolbox.Essentials.BinaryOperationProcessor">
+            <summary>
+            Applies the <see cref="P:TomsToolbox.Essentials.BinaryOperationProcessor.Operation" /> on the values.<para />
+            </summary>
+            <returns>
+            If the conversions succeed, the result of the operation is returned. If any error occurs, the result is null.
+            </returns>
+            <remarks>
+            This processor works with different types on both sides.<para />
+            Either<para />
+            - both values must be convertible to a double<para />
+            or<para />
+            - value1 must have an explicit operator for the specified operation and value2 has a type converter matching the expected operator parameter.<para />
+            If the value supports implicit or explicit casts, the operation is retried on all types that the type can be casted to. This enables the converter to handle most operations on Vector, Size, Point, etc...<para />
+            <para />
+            E.g. for System.Windows.Rect the <see cref="F:TomsToolbox.Essentials.BinaryOperation.Addition" /> is mapped to "Rect.Offset(Vector)" and
+            the <see cref="F:TomsToolbox.Essentials.BinaryOperation.Multiply" /> is mapped to "Rect.Transform(Matrix)"
+            </remarks>
+        </member>
+        <member name="M:TomsToolbox.Essentials.BinaryOperationProcessor.#ctor(TomsToolbox.Essentials.BinaryOperation)">
+            <summary>
+            Initializes a new instance of the <see cref="T:TomsToolbox.Essentials.BinaryOperationProcessor" /> class.
+            </summary>
+            <param name="operation">The operation to execute.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">operation</exception>
+        </member>
+        <member name="P:TomsToolbox.Essentials.BinaryOperationProcessor.Operation">
+            <summary>
+            Gets the operation the converter is performing.
+            </summary>
+        </member>
+        <member name="M:TomsToolbox.Essentials.BinaryOperationProcessor.Execute(System.Object,System.Object)">
+            <summary>
+            Executes the operation.
+            <p /><c>[CanBeNull]</c></summary>
+            <param name="value1">The first value of the operation.<p /><c>[CanBeNull]</c></param>
+            <param name="value2">The second value of the operation.<p /><c>[CanBeNull]</c></param>
+            <returns>
+            The result of the operation.
+            </returns>
+        </member>
+        <member name="T:TomsToolbox.Essentials.CollectionExtensions">
+            <summary>
+            Extensions methods to ease dealing with collections.
+            </summary>
+        </member>
+        <member name="M:TomsToolbox.Essentials.CollectionExtensions.SynchronizeWith``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.ICollection{``0})">
+            <summary>
+            Synchronizes the items of the source list with the items of the target list. The order of the items is ignored.
+            </summary>
+            <typeparam name="T">The type of elements in the list.</typeparam>
+            <param name="target">The list to synchronize.<p /><c>[NotNull, ItemCanBeNull]</c></param>
+            <param name="source">The items that should be in the target list.<p /><c>[NotNull, ItemCanBeNull]</c></param>
+        </member>
+        <member name="M:TomsToolbox.Essentials.CollectionExtensions.SynchronizeWith``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.ICollection{``0},System.Collections.Generic.IEqualityComparer{``0})">
+            <summary>
+            Synchronizes the items of the source list with the items of the target list. The order of the items is ignored.
+            </summary>
+            <typeparam name="T">The type of elements in the list.</typeparam>
+            <param name="target">The list to synchronize.<p /><c>[NotNull, ItemCanBeNull]</c></param>
+            <param name="source">The items that should be in the target list.<p /><c>[NotNull, ItemCanBeNull]</c></param>
+            <param name="comparer">The comparer used to compare the items. If comparer is <c>null</c>, the default equality comparer is used to compare values.<p /><c>[CanBeNull]</c></param>
+        </member>
+        <member name="M:TomsToolbox.Essentials.CollectionExtensions.AddRange(System.Collections.IList,System.Collections.IEnumerable)">
+            <summary>
+            Adds the elements of the specified collection to the end of the list.
+            </summary>
+            <param name="target">The target list.<p /><c>[NotNull, ItemCanBeNull]</c></param>
+            <param name="items">The collection whose elements should be added to the end of the list. The collection itself cannot be null, but it can contain elements that are null, if type T is a reference type.<p /><c>[NotNull, ItemCanBeNull]</c></param>
+        </member>
+        <member name="M:TomsToolbox.Essentials.CollectionExtensions.AddRange``1(System.Collections.Generic.ICollection{``0},``0,``0,``0[])">
+            <summary>
+            Adds the elements of the specified collection to the end of the list.
+            </summary>
+            <typeparam name="T">The type of elements in the list.</typeparam>
+            <param name="target">The target list.<p /><c>[NotNull, ItemCanBeNull]</c></param>
+            <param name="firstItem">The first item to add.<p /><c>[CanBeNull]</c></param>
+            <param name="secondItem">The second item to add.<p /><c>[CanBeNull]</c></param>
+            <param name="moreItems">Any more items to add.<p /><c>[NotNull, ItemCanBeNull]</c></param>
+        </member>
+        <member name="M:TomsToolbox.Essentials.CollectionExtensions.AddRange``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Adds the elements of the specified collection to the end of the list.
+            </summary>
+            <typeparam name="T">The type of elements in the list.</typeparam>
+            <param name="target">The target list.<p /><c>[NotNull, ItemCanBeNull]</c></param>
+            <param name="items">The collection whose elements should be added to the end of the list. The collection itself cannot be null, but it can contain elements that are null, if type T is a reference type.<p /><c>[NotNull, ItemCanBeNull]</c></param>
+        </member>
+        <member name="M:TomsToolbox.Essentials.CollectionExtensions.TryAddRange``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Adds the elements of the specified collection to the end of the list, but ignores all <see cref="T:System.ArgumentException" />, e.g. when trying to add duplicate keys to a dictionary.
+            </summary>
+            <typeparam name="T">The type of elements in the list.</typeparam>
+            <param name="target">The target list.<p /><c>[NotNull, ItemCanBeNull]</c></param>
+            <param name="items">The collection whose elements should be added to the end of the list. The collection itself cannot be null, but it can contain elements that are null, if type T is a reference type.<p /><c>[NotNull, ItemCanBeNull]</c></param>
+        </member>
+        <member name="M:TomsToolbox.Essentials.CollectionExtensions.RemoveRange(System.Collections.IList,System.Collections.IEnumerable)">
+            <summary>
+            Removes a range of elements from the list.
+            </summary>
+            <param name="target">The target list.<p /><c>[NotNull, ItemCanBeNull]</c></param>
+            <param name="items">The items to remove.<p /><c>[NotNull, ItemCanBeNull]</c></param>
+        </member>
+        <member name="M:TomsToolbox.Essentials.CollectionExtensions.RemoveRange``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Removes a range of elements from the list.
+            </summary>
+            <typeparam name="T">The type of elements in the list.</typeparam>
+            <param name="target">The target.<p /><c>[NotNull, ItemCanBeNull]</c></param>
+            <param name="items">The items to remove.<p /><c>[NotNull, ItemCanBeNull]</c></param>
+        </member>
+        <member name="M:TomsToolbox.Essentials.CollectionExtensions.RemoveWhere``1(System.Collections.Generic.ICollection{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            Removes the range of elements from the list that fulfill the condition.
+            </summary>
+            <typeparam name="T">The type of elements in the list.</typeparam>
+            <param name="target">The target.<p /><c>[NotNull, ItemCanBeNull]</c></param>
+            <param name="condition">The condition; all items that fulfill this condition will be removed.<p /><c>[NotNull]</c></param>
+        </member>
+        <member name="M:TomsToolbox.Essentials.CollectionExtensions.Take``1(System.Collections.Generic.IEnumerator{``0},System.Int32)">
+            <summary>
+            Retrieves the specified number of items from the source. If source contains less items than specified, all available items are returned.
+            <p /><c>[NotNull, ItemCanBeNull]</c></summary>
+            <typeparam name="T">The type of elements in the list.</typeparam>
+            <param name="source">The source enumerator to retrieve the items from. The enumerator position will be incremented by the number of items returned.<p /><c>[NotNull]</c></param>
+            <param name="numberOfItems">The number of items to retrieve.</param>
+            <returns>A list that contains up to n items from the source.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.CollectionExtensions.ContainsAny(System.String,System.Char[])">
+            <summary>
+            Shortcut to test if any of the given characters is contained in the specified string.
+            </summary>
+            <param name="self">The string to analyze self.<p /><c>[NotNull]</c></param>
+            <param name="characters">The characters to test for.<p /><c>[NotNull]</c></param>
+            <returns><c>true</c> if any of the characters is contained in the specified string; otherwise <c>false</c>.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.CollectionExtensions.ContainsAny``1(System.Collections.Generic.IEnumerable{``0},``0[])">
+            <summary>
+            Shortcut to test if any of the given items are contained in the specified object.
+            </summary>
+            <typeparam name="T">The type of objects.</typeparam>
+            <param name="self">The object to analyze.<p /><c>[NotNull, ItemCanBeNull]</c></param>
+            <param name="items">The items to test for.<p /><c>[NotNull, ItemCanBeNull]</c></param>
+            <returns><c>true</c> if any of the items is contained in the specified object; otherwise <c>false</c>.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.CollectionExtensions.ContainsAny``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEqualityComparer{``0},``0[])">
+            <summary>
+            Shortcut to test if any of the given items are contained in the specified object.
+            </summary>
+            <typeparam name="T">The type of objects.</typeparam>
+            <param name="self">The object to analyze.<p /><c>[NotNull, ItemCanBeNull]</c></param>
+            <param name="items">The items to test for.<p /><c>[NotNull, ItemCanBeNull]</c></param>
+            <param name="comparer">The comparer to compare the individual items.<p /><c>[CanBeNull]</c></param>
+            <returns><c>true</c> if any of the items is contained in the specified object; otherwise <c>false</c>.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.CollectionExtensions.IndexOf``1(System.Collections.Generic.IEnumerable{``0},``0)">
+            <summary>
+            Searches for the specified object and returns the zero-based index of the first occurrence within all items.
+            </summary>
+            <typeparam name="T">The type of elements in the list.</typeparam>
+            <param name="collection">The collection to search.<p /><c>[NotNull, ItemCanBeNull]</c></param>
+            <param name="item">The object to locate. The value can be null for reference types.<p /><c>[CanBeNull]</c></param>
+            <returns>
+            The zero-based index of the first occurrence of <paramref name="item" />, if found; otherwise, –1.
+            </returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.CollectionExtensions.IndexOf``1(System.Collections.Generic.IEnumerable{``0},``0,System.Collections.Generic.IEqualityComparer{``0})">
+            <summary>
+            Searches for the specified object and returns the zero-based index of the first occurrence within all items.
+            </summary>
+            <typeparam name="T">The type of elements in the list.</typeparam>
+            <param name="collection">The collection to search.<p /><c>[NotNull, ItemCanBeNull]</c></param>
+            <param name="item">The object to locate. The value can be null for reference types.<p /><c>[CanBeNull]</c></param>
+            <param name="comparer">The comparer.<p /><c>[CanBeNull]</c></param>
+            <returns>
+            The zero-based index of the first occurrence of <paramref name="item" />, if found; otherwise, –1.
+            </returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.CollectionExtensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})">
+            <summary>
+            Performs the specified action on each element of the collection.
+            </summary>
+            <typeparam name="T">The type of elements in the collection.</typeparam>
+            <param name="collection">The collection.<p /><c>[NotNull, ItemCanBeNull]</c></param>
+            <param name="action">The action.<p /><c>[NotNull]</c></param>
+        </member>
+        <member name="M:TomsToolbox.Essentials.CollectionExtensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0,System.Int32})">
+            <summary>
+            Performs the specified action on each element of the collection, providing also the index of the item.
+            </summary>
+            <typeparam name="T">The type of elements in the collection.</typeparam>
+            <param name="collection">The collection.<p /><c>[NotNull, ItemCanBeNull]</c></param>
+            <param name="action">The action.<p /><c>[NotNull]</c></param>
+        </member>
+        <member name="M:TomsToolbox.Essentials.CollectionExtensions.Transpose``2(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{``0,``1}})">
+            <summary>
+            Transposes the specified items, i.e. exchanges key and value.
+            <p /><c>[NotNull]</c></summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TValue">The type of the value.</typeparam>
+            <param name="items">The items.<p /><c>[NotNull]</c></param>
+            <returns>The transposed items.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.CollectionExtensions.ToDictionary``2(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{``0,``1}})">
+            <summary>
+            Creates a Dictionary{TKey, TValue} from an IEnumerable{KeyValuePair{TKey, TValue}}.
+            <p /><c>[NotNull]</c></summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TValue">The type of the value.</typeparam>
+            <param name="items">The items containing the key-value pairs.<p /><c>[NotNull]</c></param>
+            <returns>The dictionary</returns>
+            <exception cref="T:System.ArgumentNullException">Any of the keys is null.</exception>
+            <exception cref="T:System.ArgumentException">Any of the keys is duplicate.</exception>
+        </member>
+        <member name="M:TomsToolbox.Essentials.CollectionExtensions.ToDictionary``2(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{``0,``1}},System.Collections.Generic.IEqualityComparer{``0})">
+            <summary>
+            Creates a Dictionary{TKey, TValue} from an IEnumerable{KeyValuePair{TKey, TValue}}.
+            <p /><c>[NotNull]</c></summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TValue">The type of the value.</typeparam>
+            <param name="items">The items containing the key-value pairs.<p /><c>[NotNull]</c></param>
+            <param name="comparer">The comparer.<p /><c>[CanBeNull]</c></param>
+            <returns>The dictionary</returns>
+            <exception cref="T:System.ArgumentNullException">Any of the keys is null.</exception>
+            <exception cref="T:System.ArgumentException">Any of the keys is duplicate.</exception>
+        </member>
+        <member name="M:TomsToolbox.Essentials.CollectionExtensions.GetValueOrDefault``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1)">
+            <summary>
+            Gets the value from the dictionary, or the default value if no item with the specified key exists.
+            <p /><c>[CanBeNull]</c></summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TValue">The type of the value.</typeparam>
+            <param name="dictionary">The dictionary.<p /><c>[NotNull]</c></param>
+            <param name="key">The key to lookup.<p /><c>[NotNull]</c></param>
+            <param name="defaultValue">The default value.<p /><c>[CanBeNull]</c></param>
+            <returns>
+            The value from the dictionary, or the default value if no item with the specified key exists.
+            </returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.CollectionExtensions.GetValueOrDefault``2(System.Collections.Generic.Dictionary{``0,``1},``0,``1)">
+            <summary>
+            Gets the value from the dictionary, or the default value if no item with the specified key exists.
+            <p /><c>[CanBeNull]</c></summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TValue">The type of the value.</typeparam>
+            <param name="dictionary">The dictionary.<p /><c>[NotNull]</c></param>
+            <param name="key">The key to lookup.<p /><c>[NotNull]</c></param>
+            <param name="defaultValue">The default value.<p /><c>[CanBeNull]</c></param>
+            <returns>
+            The value from the dictionary, or the default value if no item with the specified key exists.
+            </returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.CollectionExtensions.GetValueOrDefault``2(System.Collections.Generic.IReadOnlyDictionary{``0,``1},``0,``1)">
+            <summary>
+            Gets the value from the dictionary, or the default value if no item with the specified key exists.
+            <p /><c>[CanBeNull]</c></summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TValue">The type of the value.</typeparam>
+            <param name="dictionary">The dictionary.<p /><c>[NotNull]</c></param>
+            <param name="key">The key to lookup.<p /><c>[NotNull]</c></param>
+            <param name="defaultValue">The default value.<p /><c>[CanBeNull]</c></param>
+            <returns>
+            The value from the dictionary, or the default value if no item with the specified key exists.
+            </returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.CollectionExtensions.GetValueOrDefault``2(System.Collections.Generic.IDictionary{``0,``1},``0)">
+            <summary>
+            Gets the value from the dictionary, or the default value of <typeparamref name="TValue" /> if no item with the specified key exists.
+            <p /><c>[CanBeNull]</c></summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TValue">The type of the value.</typeparam>
+            <param name="dictionary">The dictionary.<p /><c>[NotNull]</c></param>
+            <param name="key">The key to lookup.<p /><c>[NotNull]</c></param>
+            <returns>
+            The value from the dictionary, or the default value of <typeparamref name="TValue" /> if no item with the specified key exists.
+            </returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.CollectionExtensions.GetValueOrDefault``2(System.Collections.Generic.Dictionary{``0,``1},``0)">
+            <summary>
+            Gets the value from the dictionary, or the default value of <typeparamref name="TValue" /> if no item with the specified key exists.
+            <p /><c>[CanBeNull]</c></summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TValue">The type of the value.</typeparam>
+            <param name="dictionary">The dictionary.<p /><c>[NotNull]</c></param>
+            <param name="key">The key to lookup.<p /><c>[NotNull]</c></param>
+            <returns>
+            The value from the dictionary, or the default value of <typeparamref name="TValue" /> if no item with the specified key exists.
+            </returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.CollectionExtensions.GetValueOrDefault``2(System.Collections.Generic.IReadOnlyDictionary{``0,``1},``0)">
+            <summary>
+            Gets the value from the dictionary, or the default value of <typeparamref name="TValue" /> if no item with the specified key exists.
+            <p /><c>[CanBeNull]</c></summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TValue">The type of the value.</typeparam>
+            <param name="dictionary">The dictionary.<p /><c>[NotNull]</c></param>
+            <param name="key">The key to lookup.<p /><c>[NotNull]</c></param>
+            <returns>
+            The value from the dictionary, or the default value of <typeparamref name="TValue" /> if no item with the specified key exists.
+            </returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.CollectionExtensions.ForceValue``2(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{``0,``1})">
+            <summary>
+            Gets the value associated with the specified key from the <paramref name="dictionary" />, or creates a new entry if the dictionary does not contain a value associated with the key.
+            <p /><c>[CanBeNull]</c></summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TValue">The type of the value.</typeparam>
+            <param name="dictionary">The dictionary.<p /><c>[NotNull]</c></param>
+            <param name="key">The key.<p /><c>[NotNull]</c></param>
+            <param name="generator">The generator function called when a new value needs to be created.<p /><c>[NotNull]</c></param>
+            <returns>The element with the specified key.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.CollectionExtensions.ForceValue``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1)">
+            <summary>
+            Gets the value associated with the specified key from the <paramref name="dictionary" />, or creates a new entry if the dictionary does not contain a value associated with the key.
+            <p /><c>[CanBeNull]</c></summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TValue">The type of the value.</typeparam>
+            <param name="dictionary">The dictionary.<p /><c>[NotNull]</c></param>
+            <param name="key">The key.<p /><c>[NotNull]</c></param>
+            <param name="defaultValue">The value that will be added to the dictionary if the dictionary does not contain a value associated with the key.<p /><c>[CanBeNull]</c></param>
+            <returns>The element with the specified key.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.CollectionExtensions.ToArray``2(System.Collections.Generic.ICollection{``0},System.Func{``0,``1})">
+            <summary>
+            Creates an array from a <see cref="T:System.Collections.Generic.ICollection`1" />.
+            This method is faster than using Enumerable.Select(selector).ToArray() because the size of the target array is known in advance.
+            <p /><c>[NotNull, ItemCanBeNull]</c></summary>
+            <typeparam name="TSource">The type of the items in the source collection.</typeparam>
+            <typeparam name="TTarget">The type of the items in the result collection.</typeparam>
+            <param name="items"> A System.Collections.Generic.ICollection{TSource} to create an array from.<p /><c>[NotNull, ItemCanBeNull]</c></param>
+            <param name="selector">The selector to select the elements in the array.<p /><c>[NotNull]</c></param>
+            <returns>An array that contains the selected elements from the input sequence.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.CollectionExtensions.Repeat``1(System.Collections.Generic.ICollection{``0},System.Int32)">
+            <summary>
+            Repeats the specified source multiple times.
+            <p /><c>[NotNull, ItemCanBeNull]</c></summary>
+            <typeparam name="T">The type of the items in the source collection.</typeparam>
+            <param name="source">The collection to be repeated.<p /><c>[NotNull, ItemCanBeNull]</c></param>
+            <param name="count">The number of times to repeat the source sequence.</param>
+            <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1" /> that contains the repeated source sequence.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.CollectionExtensions.FindIndex``1(System.Collections.Generic.IEnumerable{``0},System.Predicate{``0})">
+            <summary>
+            Searches for an element that matches the conditions defined by the specified predicate,
+            and returns the zero-based index of the first occurrence within the entire <see cref="T:System.Collections.Generic.IEnumerable`1" />.
+            </summary>
+            <typeparam name="T">The type of the items in the source collection.</typeparam>
+            <param name="source">The collection containing the items to be searched.<p /><c>[NotNull]</c></param>
+            <param name="match">The <see cref="T:System.Predicate`1" /> delegate that defines the conditions of the element to search for.<p /><c>[NotNull]</c></param>
+            <returns>
+            The zero-based index of the first occurrence of an element that matches the conditions
+            defined by <paramref name="match" />, if found; otherwise, –1.
+            </returns>
+        </member>
+        <member name="T:TomsToolbox.Essentials.CultureInfoExtensions">
+            <summary>
+            Extension methods for the <see cref="T:System.Globalization.CultureInfo" /> class.
+            </summary>
+        </member>
+        <member name="M:TomsToolbox.Essentials.CultureInfoExtensions.GetAncestors(System.Globalization.CultureInfo)">
+            <summary>
+            Returns an enumeration of the ancestor elements of this element.
+            <p /><c>[ItemNotNull, NotNull]</c></summary>
+            <param name="self">The starting element.<p /><c>[NotNull]</c></param>
+            <returns>The ancestor list.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.CultureInfoExtensions.GetAncestorsAndSelf(System.Globalization.CultureInfo)">
+            <summary>
+            Returns an enumeration of elements that contain this element, and the ancestors of this element.
+            <p /><c>[ItemNotNull, NotNull]</c></summary>
+            <param name="self">The starting element.<p /><c>[NotNull]</c></param>
+            <returns>The ancestor list.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.CultureInfoExtensions.GetChildren(System.Globalization.CultureInfo)">
+            <summary>
+            Enumerates the immediate children of the specified item.
+            <p /><c>[NotNull, ItemNotNull]</c></summary>
+            <param name="item">The item.<p /><c>[NotNull]</c></param>
+            <returns>The immediate children of the specified item.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.CultureInfoExtensions.GetDescendants(System.Globalization.CultureInfo)">
+            <summary>
+            Enumerates all descendants of the specified item.
+            <p /><c>[NotNull, ItemNotNull]</c></summary>
+            <param name="item">The item.<p /><c>[NotNull]</c></param>
+            <returns>The descendants of the item.</returns>
+        </member>
+        <member name="T:TomsToolbox.Essentials.CustomAttributeProviderExtensions">
+            <summary>
+            Various extension methods.
+            </summary>
+        </member>
+        <member name="M:TomsToolbox.Essentials.CustomAttributeProviderExtensions.GetCustomAttributes``1(System.Reflection.ICustomAttributeProvider,System.Boolean)">
+            <summary>
+            Returns a list of custom attributes identified by the type. <see cref="M:System.Reflection.MemberInfo.GetCustomAttributes(System.Type,System.Boolean)" />
+            <p /><c>[ItemNotNull, NotNull]</c></summary>
+            <typeparam name="T">The type of attributes to return.</typeparam>
+            <param name="self">The member info of the object to evaluate.<p /><c>[NotNull]</c></param>
+            <param name="inherit">Specifies whether to search this member's inheritance chain to find the attributes.</param>
+            <returns>An array of custom attributes applied to this member, or an array with zero (0) elements if no attributes have been applied.</returns>
+            <exception cref="T:System.TypeLoadException">A custom attribute type cannot be loaded</exception>
+            <exception cref="T:System.InvalidOperationException">This member belongs to a type that is loaded into the reflection-only context. See How to: Load Assemblies into the Reflection-Only Context.</exception>
+        </member>
+        <member name="M:TomsToolbox.Essentials.CustomAttributeProviderExtensions.TryGetDisplayName(System.Reflection.ICustomAttributeProvider)">
+            <summary>
+            Get the value of the DisplayNameAttribute associated with the given item.
+            <p /><c>[CanBeNull]</c></summary>
+            <param name="item">The item to lookup. This can be a MemberInfo like FieldInfo, PropertyInfo...<p /><c>[NotNull]</c></param>
+            <returns>The associated display name, or null if the item does not have a DisplayName attribute.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.CustomAttributeProviderExtensions.TryGetDescription(System.Reflection.ICustomAttributeProvider)">
+            <summary>
+            Get the value of the DescriptionAttribute associated with the given item.
+            <p /><c>[CanBeNull]</c></summary>
+            <param name="item">The item to lookup. This can be a MemberInfo like FieldInfo, PropertyInfo...<p /><c>[NotNull]</c></param>
+            <returns>The associated description, or null if the item does not have a Description attribute.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.CustomAttributeProviderExtensions.TryGetText(System.Reflection.ICustomAttributeProvider,System.Object)">
+            <summary>
+            Get the value of the TextAttribute with the specified key that is associated with the given item.
+            <p /><c>[CanBeNull]</c></summary>
+            <param name="item">The item to lookup. This can be a MemberInfo like FieldInfo, PropertyInfo...<p /><c>[NotNull]</c></param>
+            <param name="key">The key.<p /><c>[NotNull]</c></param>
+            <returns>The associated text, or null if the item does not have a text attribute with this key.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.CustomAttributeProviderExtensions.GetCustomTypeConverter(System.Reflection.ICustomAttributeProvider)">
+            <summary>
+            Gets the custom <see cref="T:System.ComponentModel.TypeConverter" /> declared with the <see cref="T:System.ComponentModel.TypeConverterAttribute" /> on the specified item.
+            <p /><c>[CanBeNull]</c></summary>
+            <param name="item">The item to look up.<p /><c>[NotNull]</c></param>
+            <returns>
+            The custom type converter, or null if the item has no custom type converter attribute.
+            </returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.CustomAttributeProviderExtensions.GetCustomTypeConverter(System.Reflection.ICustomAttributeProvider,System.String@)">
+            <summary>
+            Gets the custom <see cref="T:System.ComponentModel.TypeConverter" /> declared with the <see cref="T:System.ComponentModel.TypeConverterAttribute" /> on the specified item.
+            <p /><c>[CanBeNull]</c></summary>
+            <param name="item">The item to look up.<p /><c>[NotNull]</c></param>
+            <param name="log">The log how the converter was located.</param>
+            <returns>
+            The custom type converter, or null if the item has no custom type converter attribute.
+            </returns>
+        </member>
+        <member name="T:TomsToolbox.Essentials.DateTimeOperations">
+            <summary>
+            Additional operations for <see cref="T:System.DateTime" /> and <see cref="T:System.TimeSpan" />.
+            </summary>
+        </member>
+        <member name="M:TomsToolbox.Essentials.DateTimeOperations.Min(System.DateTime,System.DateTime)">
+            <summary>
+            Returns the smaller of two dates.
+            </summary>
+            <param name="value1">The first of two dates.</param>
+            <param name="value2">The second of two dates.</param>
+            <returns>Parameter value1 or value2, whichever is smaller.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.DateTimeOperations.Max(System.DateTime,System.DateTime)">
+            <summary>
+            Returns the larger of two dates.
+            </summary>
+            <param name="value1">The first of two dates.</param>
+            <param name="value2">The second of two dates.</param>
+            <returns>Parameter value1 or value2, whichever is larger.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.DateTimeOperations.Min(System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Returns the smaller of two time spans.
+            </summary>
+            <param name="value1">The first of two time spans.</param>
+            <param name="value2">The second of two time spans.</param>
+            <returns>Parameter value1 or value2, whichever is smaller.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.DateTimeOperations.Max(System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Returns the larger of two time spans.
+            </summary>
+            <param name="value1">The first of two time spans.</param>
+            <param name="value2">The second of two time spans.</param>
+            <returns>Parameter value1 or value2, whichever is larger.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.DateTimeOperations.GetDaysOfWeek(System.Globalization.CultureInfo)">
+            <summary>
+            Gets the days of a week starting with the cultures first day of week.
+            <p /><c>[NotNull]</c></summary>
+            <param name="cultureInfo">The culture information.<p /><c>[NotNull]</c></param>
+            <returns>The days of a week starting with the cultures first day of week.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.DateTimeOperations.RoundToSeconds(System.TimeSpan)">
+            <summary>
+            Rounds the time span so it does not contain any fractional seconds.
+            </summary>
+            <param name="timeSpan">The time span.</param>
+            <returns>The time span with no fractional seconds.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.DateTimeOperations.RoundToSeconds(System.TimeSpan,System.Func{System.Double,System.Double})">
+            <summary>
+            Rounds the time span so it does not contain any fractional seconds.
+            </summary>
+            <param name="timeSpan">The time span.</param>
+            <param name="roundingOperation">The rounding operation that rounds the seconds.<p /><c>[NotNull]</c></param>
+            <returns> The time span with no fractional seconds.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.DateTimeOperations.RoundToSeconds(System.DateTime)">
+            <summary>
+            Rounds the time span so it does not contain any fractional seconds.
+            </summary>
+            <param name="time">The time.</param>
+            <returns>The time with no fractional seconds.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.DateTimeOperations.RoundToSeconds(System.DateTime,System.Func{System.Double,System.Double})">
+            <summary>
+            Rounds the time span so it does not contain any fractional seconds.
+            </summary>
+            <param name="time">The time.</param>
+            <param name="roundingOperation">The rounding operation that rounds the seconds.<p /><c>[NotNull]</c></param>
+            <returns>The time with no fractional seconds.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.DateTimeOperations.RoundToMinutes(System.TimeSpan)">
+            <summary>
+            Rounds the time span so it does not contain any fractional minutes.
+            </summary>
+            <param name="timeSpan">The time span.</param>
+            <returns>The time span with no fractional minutes.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.DateTimeOperations.RoundToMinutes(System.TimeSpan,System.Func{System.Double,System.Double})">
+            <summary>
+            Rounds the time span so it does not contain any fractional minutes.
+            </summary>
+            <param name="timeSpan">The time span.</param>
+            <param name="roundingOperation">The rounding operation that rounds the minutes.<p /><c>[NotNull]</c></param>
+            <returns> The time span with no fractional minutes.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.DateTimeOperations.RoundToMinutes(System.DateTime)">
+            <summary>
+            Rounds the time span so it does not contain any fractional minutes.
+            </summary>
+            <param name="time">The time.</param>
+            <returns>The time with no fractional minutes.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.DateTimeOperations.RoundToMinutes(System.DateTime,System.Func{System.Double,System.Double})">
+            <summary>
+            Rounds the time span so it does not contain any fractional minutes.
+            </summary>
+            <param name="time">The time.</param>
+            <param name="roundingOperation">The rounding operation that rounds the minutes.<p /><c>[NotNull]</c></param>
+            <returns>The time with no fractional minutes.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.DateTimeOperations.RoundToHours(System.TimeSpan)">
+            <summary>
+            Rounds the time span so it does not contain any fractional hours.
+            </summary>
+            <param name="timeSpan">The time span.</param>
+            <returns>The time span with no fractional hours.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.DateTimeOperations.RoundToHours(System.TimeSpan,System.Func{System.Double,System.Double})">
+            <summary>
+            Rounds the time span so it does not contain any fractional hours.
+            </summary>
+            <param name="timeSpan">The time span.</param>
+            <param name="roundingOperation">The rounding operation that rounds the hours.<p /><c>[NotNull]</c></param>
+            <returns> The time span with no fractional hours.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.DateTimeOperations.RoundToHours(System.DateTime)">
+            <summary>
+            Rounds the time span so it does not contain any fractional hours.
+            </summary>
+            <param name="time">The time.</param>
+            <returns>The time with no fractional hours.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.DateTimeOperations.RoundToHours(System.DateTime,System.Func{System.Double,System.Double})">
+            <summary>
+            Rounds the time span so it does not contain any fractional hours.
+            </summary>
+            <param name="time">The time.</param>
+            <param name="roundingOperation">The rounding operation that rounds the hours.<p /><c>[NotNull]</c></param>
+            <returns>The time with no fractional hours.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.DateTimeOperations.RoundToDays(System.DateTime)">
+            <summary>
+            Rounds the time span so it does not contain any fractional days.
+            </summary>
+            <param name="time">The time.</param>
+            <returns>The time with no fractional days.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.DateTimeOperations.RoundToDays(System.DateTime,System.Func{System.Double,System.Double})">
+            <summary>
+            Rounds the time span so it does not contain any fractional days.
+            </summary>
+            <param name="time">The time.</param>
+            <param name="roundingOperation">The rounding operation that rounds the days.<p /><c>[NotNull]</c></param>
+            <returns>The time with no fractional days.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.DateTimeOperations.AddSeconds(System.TimeSpan,System.Double)">
+            <summary>
+            Adds the specified number of seconds to the value of this instance.
+            </summary>
+            <param name="timeSpan">The time span.</param>
+            <param name="value">A number of whole and fractional seconds. The <paramref name="value" /> parameter can be negative or positive.</param>
+            <returns>
+            A <see cref="T:System.TimeSpan" /> that represents the value of this instance plus the value of <paramref name="value" />.
+            </returns>
+            <exception cref="T:System.OverflowException">The resulting <see cref="T:System.TimeSpan" /> is less than <see cref="F:System.TimeSpan.MinValue" /> or greater than <see cref="F:System.TimeSpan.MaxValue" />.</exception>
+        </member>
+        <member name="M:TomsToolbox.Essentials.DateTimeOperations.AddMinutes(System.TimeSpan,System.Double)">
+            <summary>
+            Adds the specified number of minutes to the value of this instance.
+            </summary>
+            <param name="timeSpan">The time span.</param>
+            <param name="value">A number of whole and fractional minutes. The <paramref name="value" /> parameter can be negative or positive.</param>
+            <returns>
+            A <see cref="T:System.TimeSpan" /> that represents the value of this instance plus the value of <paramref name="value" />.
+            </returns>
+            <exception cref="T:System.OverflowException">The resulting <see cref="T:System.TimeSpan" /> is less than <see cref="F:System.TimeSpan.MinValue" /> or greater than <see cref="F:System.TimeSpan.MaxValue" />.</exception>
+        </member>
+        <member name="M:TomsToolbox.Essentials.DateTimeOperations.AddHours(System.TimeSpan,System.Double)">
+            <summary>
+            Adds the specified number of hours to the value of this instance.
+            </summary>
+            <param name="timeSpan">The time span.</param>
+            <param name="value">A number of whole and fractional hours. The <paramref name="value" /> parameter can be negative or positive.</param>
+            <returns>
+            A <see cref="T:System.TimeSpan" /> that represents the value of this instance plus the value of <paramref name="value" />.
+            </returns>
+            <exception cref="T:System.OverflowException">The resulting <see cref="T:System.TimeSpan" /> is less than <see cref="F:System.TimeSpan.MinValue" /> or greater than <see cref="F:System.TimeSpan.MaxValue" />.</exception>
+        </member>
+        <member name="M:TomsToolbox.Essentials.DateTimeOperations.AddDays(System.TimeSpan,System.Double)">
+            <summary>
+            Adds the specified number of days to the value of this instance.
+            </summary>
+            <param name="timeSpan">The time span.</param>
+            <param name="value">A number of whole and fractional days. The <paramref name="value" /> parameter can be negative or positive.</param>
+            <returns>
+            A <see cref="T:System.TimeSpan" /> that represents the value of this instance plus the value of <paramref name="value" />.
+            </returns>
+            <exception cref="T:System.OverflowException">The resulting <see cref="T:System.TimeSpan" /> is less than <see cref="F:System.TimeSpan.MinValue" /> or greater than <see cref="F:System.TimeSpan.MaxValue" />.</exception>
+        </member>
+        <member name="M:TomsToolbox.Essentials.DateTimeOperations.MultipliedWith(System.TimeSpan,System.Double)">
+            <summary>
+            Multiplies the time span with the specified factor.
+            </summary>
+            <param name="timeSpan">The time span.</param>
+            <param name="factor">The factor.</param>
+            <returns>The time span multiplied with the factor</returns>
+        </member>
+        <member name="T:TomsToolbox.Essentials.DefaultValue">
+            <summary>
+            Helper methods to get the default value for a type when the type is only available at runtime.
+            </summary>
+        </member>
+        <member name="M:TomsToolbox.Essentials.DefaultValue.CreateDefault(System.Type)">
+            <summary>
+            Creates the default value (C#: default(T)) for the specified type, where the type is only known at runtime.
+            <p /><c>[CanBeNull]</c></summary>
+            <param name="type">The type.<p /><c>[NotNull]</c></param>
+            <returns>The default value.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.DefaultValue.CreateEmpty(System.Type)">
+            <summary>
+            Create an empty value that is not null for value types or strings. 
+            <list type="bullet">
+            <item>Value type: The empty value is the same as the default value (usually 0).</item>
+            <item>String: The empty value is an empty string.</item>
+            <item>All other reference types: <c>null</c>.</item>
+            </list>
+            <p /><c>[CanBeNull]</c></summary>
+            <remarks>
+            Useful to initialize boxed nullable fields in data base tables with a not null value.
+            </remarks>
+            <param name="type">The type.<p /><c>[NotNull]</c></param>
+            <returns>The empty value.</returns>
+        </member>
+        <member name="T:TomsToolbox.Essentials.DelegateComparer`1">
+            <inheritdoc />
+            <summary>
+            <see cref="T:System.Collections.Generic.IComparer`1" /> implementation using a delegate function to compare the values.
+            </summary>
+        </member>
+        <member name="M:TomsToolbox.Essentials.DelegateComparer`1.#ctor(System.Func{`0,`0,System.Int32})">
+            <summary>
+            Initializes a new instance of the <see cref="T:TomsToolbox.Essentials.DelegateComparer`1" /> class.
+            </summary>
+            <param name="comparer">The comparer.<p /><c>[NotNull]</c></param>
+        </member>
+        <member name="M:TomsToolbox.Essentials.DelegateComparer`1.Compare(`0,`0)">
+            <inheritdoc />
+        </member>
+        <member name="T:TomsToolbox.Essentials.DelegateEqualityComparer`1">
+            <inheritdoc />
+            <summary>
+            <see cref="T:System.Collections.Generic.IEqualityComparer`1" /> implementation using a delegate function to compare the values.
+            </summary>
+            <typeparam name="T">The type of objects to compare.</typeparam>
+        </member>
+        <member name="M:TomsToolbox.Essentials.DelegateEqualityComparer`1.#ctor">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the <see cref="T:TomsToolbox.Essentials.DelegateEqualityComparer`1" /> class,
+            using <see cref="M:System.Object.Equals(System.Object,System.Object)" /> and <see cref="M:System.Object.GetHashCode" />
+            </summary>
+        </member>
+        <member name="M:TomsToolbox.Essentials.DelegateEqualityComparer`1.#ctor(System.Func{`0,System.Object})">
+            <summary>
+            Initializes a new instance of the <see cref="T:TomsToolbox.Essentials.DelegateEqualityComparer`1" /> class.
+            </summary>
+            <param name="selector">The selector that selects the object to compare, if e.g. two objects can be compared by a single property.<p /><c>[NotNull]</c></param>
+        </member>
+        <member name="M:TomsToolbox.Essentials.DelegateEqualityComparer`1.#ctor(System.Func{`0,`0,System.Boolean},System.Func{`0,System.Int32})">
+            <summary>
+            Initializes a new instance of the <see cref="T:TomsToolbox.Essentials.DelegateEqualityComparer`1" /> class.
+            </summary>
+            <param name="comparer">The compare function.<p /><c>[NotNull]</c></param>
+            <param name="hashCodeGenerator">The hash code generator.<p /><c>[NotNull]</c></param>
+        </member>
+        <member name="M:TomsToolbox.Essentials.DelegateEqualityComparer`1.#ctor(System.Func{`0,System.Object},System.Func{System.Object,System.Object,System.Boolean},System.Func{System.Object,System.Int32})">
+            <summary>
+            Initializes a new instance of the <see cref="T:TomsToolbox.Essentials.DelegateEqualityComparer`1" /> class.
+            </summary>
+            <param name="selector">The selector that selects the object to compare, if e.g. two objects can be compared by a single property.<p /><c>[NotNull]</c></param>
+            <param name="comparer">The compare function.<p /><c>[NotNull]</c></param>
+            <param name="hashCodeGenerator">The hash code generator.<p /><c>[NotNull]</c></param>
+        </member>
+        <member name="M:TomsToolbox.Essentials.DelegateEqualityComparer`1.Equals(`0,`0)">
+            <inheritdoc />
+        </member>
+        <member name="M:TomsToolbox.Essentials.DelegateEqualityComparer`1.GetHashCode(`0)">
+            <inheritdoc />
+        </member>
+        <member name="T:TomsToolbox.Essentials.Disposable">
+            <summary>
+            Helper methods to ease robust implementation of the IDisposable pattern.
+            </summary>
+        </member>
+        <member name="E:TomsToolbox.Essentials.Disposable.NotDisposedObject">
+            <summary>
+            Occurs when <see cref="M:TomsToolbox.Essentials.Disposable.ReportNotDisposedObject(System.IDisposable)" /> has been called, i.e. a not disposed object had been detected.
+            Use this event to do some custom error handling, e.g. logging or throwing an exception.
+            The <see cref="P:TomsToolbox.Essentials.TextEventArgs.Text" /> will contain the name of the class of the object that was not disposed.
+            </summary>
+        </member>
+        <member name="M:TomsToolbox.Essentials.Disposable.ReportNotDisposedObject(System.IDisposable)">
+             <summary>
+             Handle reporting of a not disposed object.<para />
+             Using this pattern is a good practice to avoid code where disposable objects get never disposed.<para />
+             Calling this method will raise the <see cref="E:TomsToolbox.Essentials.Disposable.NotDisposedObject" /> event if any event handler is attached;
+             otherwise it will throw an <see cref="T:System.InvalidOperationException" /> if a debugger is attached.
+             If the application does not run in a debugger and no event handler is attached, calling this method does nothing.
+             </summary>
+             <param name="obj">The object for which to report the missing dispose call.<p /><c>[NotNull]</c></param>
+             <example>
+             Implement <see cref="T:System.IDisposable" /> like this:<para />
+             <code language="C#"><![CDATA[
+             void Dispose()
+             {
+                 Dispose(true);
+                 GC.SuppressFinalize(this);
+             }
+            
+             ~MyClass()
+             {
+                 this.ReportNotDisposedObject();
+             }
+             ]]></code></example>
+        </member>
+        <member name="M:TomsToolbox.Essentials.Disposable.Dispose(System.Object)">
+            <summary>
+            If the specified object implements <see cref="T:System.IDisposable" />, it will be disposed, else nothing is done.
+            </summary>
+            <param name="item">The object to dispose.<p /><c>[CanBeNull]</c></param>
+            <returns><c>true</c> if the object has been disposed.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.Disposable.DisposeAll(System.Collections.IEnumerable)">
+            <summary>
+            Calls <see cref="M:TomsToolbox.Essentials.Disposable.Dispose(System.Object)" /> for all objects in the list.
+            </summary>
+            <param name="items">The objects to dispose.<p /><c>[NotNull, ItemCanBeNull]</c></param>
+            <returns><c>true</c> if any object has been disposed.</returns>
+        </member>
+        <member name="T:TomsToolbox.Essentials.Enumerate">
+            <summary>
+            Some enumerators for various scenarios.
+            </summary>
+        </member>
+        <member name="M:TomsToolbox.Essentials.Enumerate.AsTuples``2(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1})">
+            <summary>
+            Enumerates the elements of two enumerations as tuples.
+            <p /><c>[ItemNotNull, NotNull]</c></summary>
+            <typeparam name="T1">The type of the first collection.</typeparam>
+            <typeparam name="T2">The type of the second collection.</typeparam>
+            <param name="first">The first collection.<p /><c>[NotNull, ItemCanBeNull]</c></param>
+            <param name="second">The second collection.<p /><c>[NotNull, ItemCanBeNull]</c></param>
+            <returns>Tuples of the elements.</returns>
+            <remarks>If the number of elements in each collection is different, the smaller collection determines the number of enumerated items.</remarks>
+        </member>
+        <member name="M:TomsToolbox.Essentials.Enumerate.AsTuples(System.Collections.IEnumerable,System.Collections.IEnumerable)">
+            <summary>
+            Enumerates the elements of two enumerations as tuples.
+            <p /><c>[ItemNotNull, NotNull]</c></summary>
+            <param name="first">The first collection.<p /><c>[NotNull, ItemCanBeNull]</c></param>
+            <param name="second">The second collection.<p /><c>[NotNull, ItemCanBeNull]</c></param>
+            <returns>Tuples of the elements.</returns>
+            <remarks>If the number of elements in each collection is different, the smaller collection determines the number of enumerated items.</remarks>
+        </member>
+        <member name="T:TomsToolbox.Essentials.EnumExtensions">
+            <summary>
+            Extension methods to ease dealing with <see cref="T:System.Enum" /> types.
+            </summary>
+        </member>
+        <member name="M:TomsToolbox.Essentials.EnumExtensions.IsAnyFlagSet``1(``0,``0)">
+            <summary>
+            Determines whether any of the specified flags is set on the specified value.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Enum" /> type.</typeparam>
+            <param name="value">The value.</param>
+            <param name="flag">The flag.</param>
+            <returns>True if any of the specified flags is set.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.EnumExtensions.AreAllFlagsSet``1(``0,``0)">
+            <summary>
+            Determines whether all of the specified flags are set on the specified value.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Enum" /> type.</typeparam>
+            <param name="value">The value.</param>
+            <param name="flag">The flag.</param>
+            <returns>True if all of the specified flags are set.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.EnumExtensions.GetFlags``1(``0)">
+            <summary>
+            Gets the individual flags set on the specified value.
+            <p /><c>[NotNull]</c></summary>
+            <typeparam name="T">The <see cref="T:System.Enum" /> type.</typeparam>
+            <param name="value">The value.</param>
+            <returns>The individual flags set on the specified value.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.EnumExtensions.SetFlags``1(``0,``0,System.Boolean)">
+            <summary>
+            Sets the specified flags on the specified value on or off.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Enum" /> type.</typeparam>
+            <param name="value">The value.</param>
+            <param name="flags">The flags.</param>
+            <param name="on">If set to <c>true</c>, the flags are set, otherwise the flags are cleared.</param>
+            <returns>The value with the specified flags set or cleared.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.EnumExtensions.SetFlags``1(``0,``0)">
+            <summary>
+            Sets the specified flags on the specified value.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Enum" /> type.</typeparam>
+            <param name="value">The value.</param>
+            <param name="flags">The flags.</param>
+            <returns>The value with the specified flags set.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.EnumExtensions.ClearFlags``1(``0,``0)">
+            <summary>
+            Clears the specified flags on the specified value.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Enum" /> type.</typeparam>
+            <param name="value">The value.</param>
+            <param name="flags">The flags.</param>
+            <returns>The value with the specified flags cleared.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.EnumExtensions.CombineFlags``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Combines the flags into a single <see cref="T:System.Enum" />.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Enum" /> type.</typeparam>
+            <param name="flags">The flags.<p /><c>[NotNull]</c></param>
+            <returns>The combined flags.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.EnumExtensions.ToEnum``1(System.Int32)">
+            <summary>
+            Converts an integer value into an <see cref="T:System.Enum" />.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Enum" /> type</typeparam>
+            <param name="value">The value.</param>
+            <returns>The <see cref="T:System.Enum" /> corresponding to the value. If the value is not valid for the given <see cref="T:System.Enum" />, the default value for the <see cref="T:System.Enum" /> is returned.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.EnumExtensions.ToEnum``1(System.UInt32)">
+            <summary>
+            Converts an unsigned integer value into an <see cref="T:System.Enum" />.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Enum" /> type</typeparam>
+            <param name="value">The value.</param>
+            <returns>The <see cref="T:System.Enum" /> corresponding to the value. If the value is not valid for the given <see cref="T:System.Enum" />, the default value for the <see cref="T:System.Enum" /> is returned.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.EnumExtensions.ToEnum``1(System.Int16)">
+            <summary>
+            Converts a short value into an <see cref="T:System.Enum" />.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Enum" /> type</typeparam>
+            <param name="value">The value.</param>
+            <returns>The <see cref="T:System.Enum" /> corresponding to the value. If the value is not valid for the given <see cref="T:System.Enum" />, the default value for the <see cref="T:System.Enum" /> is returned.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.EnumExtensions.ToEnum``1(System.UInt16)">
+            <summary>
+            Converts an unsigned short value into an <see cref="T:System.Enum" />.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Enum" /> type</typeparam>
+            <param name="value">The value.</param>
+            <returns>The <see cref="T:System.Enum" /> corresponding to the value. If the value is not valid for the given <see cref="T:System.Enum" />, the default value for the <see cref="T:System.Enum" /> is returned.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.EnumExtensions.ToEnum``1(System.Int64)">
+            <summary>
+            Converts a long value into an <see cref="T:System.Enum" />.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Enum" /> type</typeparam>
+            <param name="value">The value.</param>
+            <returns>The <see cref="T:System.Enum" /> corresponding to the value. If the value is not valid for the given <see cref="T:System.Enum" />, the default value for the <see cref="T:System.Enum" /> is returned.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.EnumExtensions.ToEnum``1(System.UInt64)">
+            <summary>
+            Converts an unsigned long value into an <see cref="T:System.Enum" />.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Enum" /> type</typeparam>
+            <param name="value">The value.</param>
+            <returns>The <see cref="T:System.Enum" /> corresponding to the value. If the value is not valid for the given <see cref="T:System.Enum" />, the default value for the <see cref="T:System.Enum" /> is returned.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.EnumExtensions.ToEnum``1(System.Nullable{System.Int32})">
+            <summary>
+            Converts an integer value into an enum.
+            </summary>
+            <typeparam name="T">The enum type</typeparam>
+            <param name="value">The value.</param>
+            <returns>The enum corresponding to the value. If the value is not valid for the given enum, the default value for the enum is returned.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.EnumExtensions.ToEnum``1(System.Nullable{System.UInt32})">
+            <summary>
+            Converts an unsigned integer value into an enum.
+            </summary>
+            <typeparam name="T">The enum type</typeparam>
+            <param name="value">The value.</param>
+            <returns>The enum corresponding to the value. If the value is not valid for the given enum, the default value for the enum is returned.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.EnumExtensions.ToEnum``1(System.Nullable{System.Int16})">
+            <summary>
+            Converts a short value into an enum.
+            </summary>
+            <typeparam name="T">The enum type</typeparam>
+            <param name="value">The value.</param>
+            <returns>The enum corresponding to the value. If the value is not valid for the given enum, the default value for the enum is returned.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.EnumExtensions.ToEnum``1(System.Nullable{System.UInt16})">
+            <summary>
+            Converts an unsigned short value into an enum.
+            </summary>
+            <typeparam name="T">The enum type</typeparam>
+            <param name="value">The value.</param>
+            <returns>The enum corresponding to the value. If the value is not valid for the given enum, the default value for the enum is returned.</returns>
+        </member>
+        <member name="T:TomsToolbox.Essentials.ExceptionExtensions">
+            <summary>
+            Extension methods to ease dealing with exceptions.
+            </summary>
+        </member>
+        <member name="M:TomsToolbox.Essentials.ExceptionExtensions.ExceptionChain(System.Exception)">
+            <summary>
+            Returns an enumeration of exceptions that contains this exception and all inner exceptions.
+            <p /><c>[NotNull, ItemNotNull]</c></summary>
+            <param name="ex">The exception to start with.<p /><c>[CanBeNull]</c></param>
+            <returns>The exception and all inner exceptions.</returns>
+        </member>
+        <member name="T:TomsToolbox.Essentials.HashCode">
+            <summary>
+            Helper to generate hash codes
+            </summary>
+        </member>
+        <member name="M:TomsToolbox.Essentials.HashCode.Aggregate(System.Int32,System.Int32)">
+            <summary>
+            Aggregates the specified values to a single hash code.
+            </summary>
+            <param name="hash1">The first hash code.</param>
+            <param name="hash2">The second hash code.</param>
+            <returns>A new hash code calculated from the specified ones.</returns>
+        </member>
+        <member name="T:TomsToolbox.Essentials.HighResolutionTimer">
+            <summary>
+            A high resolution timer that runs in a single thread. 
+            Timer events are triggered with high resolution, but new events will not be triggered unless the previous event is processed.
+            </summary>
+        </member>
+        <member name="M:TomsToolbox.Essentials.HighResolutionTimer.#ctor(System.Action{System.TimeSpan})">
+            <summary>
+            Initializes a new instance of the <see cref="T:TomsToolbox.Essentials.HighResolutionTimer" /> class.
+            </summary>
+            <param name="timerCallback">The timer callback.<p /><c>[NotNull]</c></param>
+        </member>
+        <member name="M:TomsToolbox.Essentials.HighResolutionTimer.#ctor(System.Action{System.TimeSpan},System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the <see cref="T:TomsToolbox.Essentials.HighResolutionTimer" /> class.
+            </summary>
+            <param name="timerCallback">The timer callback.<p /><c>[NotNull]</c></param>
+            <param name="interval">The interval.</param>
+        </member>
+        <member name="P:TomsToolbox.Essentials.HighResolutionTimer.Interval">
+            <summary>
+            Gets or sets the timer interval. The default is 1sec.
+            </summary>
+        </member>
+        <member name="P:TomsToolbox.Essentials.HighResolutionTimer.Priority">
+            <summary>
+            Gets or sets the priority of the timer thread. The default is <see cref="F:System.Threading.ThreadPriority.Highest" />
+            </summary>
+        </member>
+        <member name="P:TomsToolbox.Essentials.HighResolutionTimer.Resolution">
+            <summary>
+            Gets or sets the maximum timer resolution. The default and lower limit is one millisecond.
+            </summary>
+        </member>
+        <member name="M:TomsToolbox.Essentials.HighResolutionTimer.Start">
+            <summary>
+            Starts the timer.
+            </summary>
+        </member>
+        <member name="M:TomsToolbox.Essentials.HighResolutionTimer.Stop">
+            <summary>
+            Stops the timer.
+            </summary>
+        </member>
+        <member name="M:TomsToolbox.Essentials.HighResolutionTimer.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="T:TomsToolbox.Essentials.INotifyChanged">
+            <summary>
+            Interface implemented by objects that support a generic changed event.
+            </summary>
+        </member>
+        <member name="E:TomsToolbox.Essentials.INotifyChanged.Changed">
+            <summary>
+            Occurs when the object has changed.
+            </summary>
+        </member>
+        <member name="T:TomsToolbox.Essentials.ITimeService">
+            <summary>
+            A service providing the current date or time. 
+            Very useful to decouple code from the static <see cref="T:System.DateTime" /> methods, to make code that has dependencies to date or time testable.
+            </summary>
+        </member>
+        <member name="P:TomsToolbox.Essentials.ITimeService.Now">
+            <summary>
+            Gets a <see cref="T:System.DateTime" /> object that is set to the current date and time on this computer, expressed as the local time.
+            </summary>
+        </member>
+        <member name="P:TomsToolbox.Essentials.ITimeService.Today">
+            <summary>
+            Gets a <see cref="T:System.DateTime" /> object that is set to today's date, with the time component set to 00:00:00.
+            </summary>
+        </member>
+        <member name="P:TomsToolbox.Essentials.ITimeService.UtcNow">
+            <summary>
+            Gets a <see cref="T:System.DateTime" /> object that is set to the current date and time on this computer, expressed as the Coordinated Universal Time (UTC).
+            </summary>
+        </member>
+        <member name="T:TomsToolbox.Essentials.MathExtensions">
+            <summary>
+            Extension methods for math operations.
+            </summary>
+        </member>
+        <member name="M:TomsToolbox.Essentials.MathExtensions.Clip(System.Double,System.Double,System.Double)">
+            <summary>
+            Clips the specified value so it does not exceed min or max.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="minValue">The minimum value.</param>
+            <param name="maxValue">The maximum value.</param>
+            <returns>The clipped value.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.MathExtensions.Clip(System.Single,System.Single,System.Single)">
+            <summary>
+            Clips the specified value so it does not exceed min or max.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="minValue">The minimum value.</param>
+            <param name="maxValue">The maximum value.</param>
+            <returns>The clipped value.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.MathExtensions.Clip(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Clips the specified value so it does not exceed min or max.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="minValue">The minimum value.</param>
+            <param name="maxValue">The maximum value.</param>
+            <returns>The clipped value.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.MathExtensions.Clip(System.Int64,System.Int64,System.Int64)">
+            <summary>
+            Clips the specified value so it does not exceed min or max.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="minValue">The minimum value.</param>
+            <param name="maxValue">The maximum value.</param>
+            <returns>The clipped value.</returns>
+        </member>
+        <member name="T:TomsToolbox.Essentials.NullableExtensions">
+            <summary>
+            Replacements for some common methods with extra nullable annotations.
+            </summary>
+        </member>
+        <member name="M:TomsToolbox.Essentials.NullableExtensions.IsNullOrEmpty(System.String)">
+            <summary>Indicates whether the specified string is <see langword="null" /> or an empty string ("").</summary>
+            <param name="value">The string to test.</param>
+            <returns>
+            <see langword="true" /> if the <paramref name="value" /> parameter is <see langword="null" /> or an empty string (""); otherwise, <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.NullableExtensions.IsNullOrWhiteSpace(System.String)">
+            <summary>Indicates whether a specified string is <see langword="null" />, empty, or consists only of white-space characters.</summary>
+            <param name="value">The string to test.</param>
+            <returns>
+            <see langword="true" /> if the <paramref name="value" /> parameter is <see langword="null" /> or <see cref="F:System.String.Empty" />, or if <paramref name="value" /> consists exclusively of white-space characters.
+            </returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.NullableExtensions.ExceptNullItems``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Filters a sequence of values based on their nullness.
+            </summary>
+            <param name="source">An <see cref="T:System.Collections.Generic.IEnumerable`1" /> to filter.</param>
+            <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
+            <returns>
+            An <see cref="T:System.Collections.Generic.IEnumerable`1" /> that contains all elements from the input sequence that are not null.
+            </returns>
+        </member>
+        <member name="T:TomsToolbox.Essentials.ObjectExtensions">
+            <summary>
+            Extensions for any objects.
+            </summary>
+        </member>
+        <member name="M:TomsToolbox.Essentials.ObjectExtensions.SafeCast``1(System.Object)">
+            <summary>
+            Performs a cast from object to <typeparamref name="T" />, avoiding possible null violations if <typeparamref name="T" /> is a value type.
+            <p /><c>[CanBeNull]</c></summary>
+            <typeparam name="T">The target type</typeparam>
+            <param name="value">The value.<p /><c>[CanBeNull]</c></param>
+            <returns>The value casted to <typeparamref name="T" />, or <c>default(T)</c> if value is <c>null</c>.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.ObjectExtensions.Intercept``1(``0,System.Action{``0})">
+            <summary>
+            Intercepts the specified value. Can be used to e.g. log LINQ expressions.
+            <p /><c>[CanBeNull]</c></summary>
+            <typeparam name="T">The target type</typeparam>
+            <param name="value">The value.<p /><c>[CanBeNull]</c></param>
+            <param name="interceptor">The interceptor.<p /><c>[NotNull]</c></param>
+            <returns>The <paramref name="value" /></returns>
+        </member>
+        <member name="T:TomsToolbox.Essentials.PluginModuleAttribute">
+            <summary>
+            Denotes an assembly as a loadable module.<para />
+            Categories may be assigned to implement dynamic loading of modules by category. 
+            </summary>
+        </member>
+        <member name="M:TomsToolbox.Essentials.PluginModuleAttribute.#ctor(System.String[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:TomsToolbox.Essentials.PluginModuleAttribute" /> class.
+            </summary>
+            <param name="categories">The categories.<p /><c>[NotNull, ItemNotNull]</c></param>
+        </member>
+        <member name="P:TomsToolbox.Essentials.PluginModuleAttribute.Categories">
+            <summary>
+            Gets the categories for this module.
+            <p /><c>[NotNull, ItemNotNull]</c></summary>
+        </member>
+        <member name="T:TomsToolbox.Essentials.PropertySupport">
+            <summary>
+             Provides support for extracting property information based on a property expression.
+            </summary>
+        </member>
+        <member name="M:TomsToolbox.Essentials.PropertySupport.ExtractPropertyName``1(System.Linq.Expressions.Expression{System.Func{``0}})">
+            <summary>
+            Extracts the property name from a property expression.
+            <p /><c>[NotNull]</c></summary>
+            <typeparam name="TProperty">The property type.</typeparam>
+            <param name="propertyExpression">The property expression (e.g. () =&gt; p.PropertyName) to extract the property name from.<p /><c>[NotNull]</c></param>
+            <returns>The name of the property.</returns>
+            <exception cref="T:System.ArgumentException">Thrown when the expression is:<br />
+                Not a <see cref="T:System.Linq.Expressions.MemberExpression" /><br />
+                The <see cref="T:System.Linq.Expressions.MemberExpression" /> does not represent a property.<br />
+            </exception>
+        </member>
+        <member name="M:TomsToolbox.Essentials.PropertySupport.TryExtractPropertyName``1(System.Linq.Expressions.Expression{System.Func{``0}})">
+            <summary>
+            Extracts the property name from a property expression.
+            <p /><c>[CanBeNull]</c></summary>
+            <typeparam name="TProperty">The property type.</typeparam>
+            <param name="propertyExpression">The property expression (e.g. () =&gt; p.PropertyName) to extract the property name from.<p /><c>[NotNull]</c></param>
+            <returns>The name of the property, or null if the extraction fails.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.PropertySupport.ExtractPropertyName``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Extracts the property name from a property expression.
+            <p /><c>[NotNull]</c></summary>
+            <typeparam name="T">The object type containing the property specified in the expression.</typeparam>
+            <typeparam name="TProperty">The property type.</typeparam>
+            <param name="propertyExpression">The property expression (e.g. p =&gt; p.PropertyName) to extract the property name from.<p /><c>[NotNull]</c></param>
+            <returns>The name of the property.</returns>
+            <exception cref="T:System.ArgumentException">Thrown when the expression is:<br />
+            Not a <see cref="T:System.Linq.Expressions.MemberExpression" /><br />
+            The <see cref="T:System.Linq.Expressions.MemberExpression" /> does not represent a property.<br /></exception>
+        </member>
+        <member name="M:TomsToolbox.Essentials.PropertySupport.TryExtractPropertyName``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Extracts the property name from a property expression.
+            <p /><c>[CanBeNull]</c></summary>
+            <typeparam name="T">The object type containing the property specified in the expression.</typeparam>
+            <typeparam name="TProperty">The property type.</typeparam>
+            <param name="propertyExpression">The property expression (e.g. p =&gt; p.PropertyName) to extract the property name from.<p /><c>[NotNull]</c></param>
+            <returns>The name of the property, or null if the extraction fails.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.PropertySupport.GetEventArgs``1(System.Linq.Expressions.Expression{System.Func{``0}})">
+            <summary>
+            Gets the <see cref="T:System.ComponentModel.PropertyChangedEventArgs" /> for the specified property.
+            <p /><c>[NotNull]</c></summary>
+            <typeparam name="T">The object type containing the property specified in the expression.</typeparam>
+            <param name="propertyExpression">The property expression (e.g. p =&gt; p.PropertyName) to extract the property name from.<p /><c>[NotNull]</c></param>
+            <returns>The event arguments to pass to <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" />.</returns>
+            <exception cref="T:System.ArgumentException">Thrown when the expression is:<br />
+                Not a <see cref="T:System.Linq.Expressions.MemberExpression" /><br />
+                The <see cref="T:System.Linq.Expressions.MemberExpression" /> does not represent a property.<br />
+            </exception>
+        </member>
+        <member name="T:TomsToolbox.Essentials.RealTimeService">
+            <summary>
+            Time service returning the actual system values from <see cref="T:System.DateTime" />.
+            </summary>
+            <seealso cref="T:TomsToolbox.Essentials.ITimeService" />
+        </member>
+        <member name="P:TomsToolbox.Essentials.RealTimeService.Now">
+            <summary>
+            Gets a <see cref="T:System.DateTime" /> object that is set to the current date and time on this computer, expressed as the local time.
+            </summary>
+        </member>
+        <member name="P:TomsToolbox.Essentials.RealTimeService.Today">
+            <summary>
+            Gets a <see cref="T:System.DateTime" /> object that is set to today's date, with the time component set to 00:00:00.
+            </summary>
+        </member>
+        <member name="P:TomsToolbox.Essentials.RealTimeService.UtcNow">
+            <summary>
+            Gets a <see cref="T:System.DateTime" /> object that is set to the current date and time on this computer, expressed as the Coordinated Universal Time (UTC).
+            </summary>
+        </member>
+        <member name="T:TomsToolbox.Essentials.ReflectionExtensions">
+            <summary>
+            Methods to ease reflection
+            </summary>
+        </member>
+        <member name="M:TomsToolbox.Essentials.ReflectionExtensions.EnumerateAllTypes(System.Collections.Generic.IEnumerable{System.Reflection.Assembly})">
+            <summary>
+            Gets all types in all assemblies, including nested types.
+            <p /><c>[NotNull, ItemNotNull]</c></summary>
+            <param name="assemblies">The assemblies.<p /><c>[NotNull, ItemCanBeNull]</c></param>
+            <returns>The types in all assemblies.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.ReflectionExtensions.EnumerateAllTypes(System.Reflection.Assembly)">
+            <summary>
+            Gets all types in the assembly, including nested types.
+            <p /><c>[NotNull, ItemNotNull]</c></summary>
+            <param name="assembly">The assembly. If assembly is null, an empty list is returned.<p /><c>[CanBeNull]</c></param>
+            <returns>The types in the assembly.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.ReflectionExtensions.EnumerateAllTypes(System.IO.DirectoryInfo)">
+            <summary>
+            Enumerates all types in all assemblies with .dll extension in the specified directory.
+            <p /><c>[NotNull, ItemNotNull]</c></summary>
+            <param name="directory">The directory.<p /><c>[NotNull]</c></param>
+            <returns>All types in all assemblies in the specified directory</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.ReflectionExtensions.EnumerateAllTypes(System.IO.DirectoryInfo,System.String)">
+            <summary>
+            Enumerates all types in all assemblies in the specified directory.
+            <p /><c>[NotNull, ItemNotNull]</c></summary>
+            <param name="directory">The directory.<p /><c>[NotNull]</c></param>
+            <param name="searchPattern">The search string. The default pattern is "*", which returns all files.<p /><c>[NotNull]</c></param>
+            <returns>All types in all assemblies in the specified directory</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.ReflectionExtensions.TryLoadAssembly(System.IO.FileSystemInfo)">
+            <summary>
+            Tries to load the assembly from the specified file without generating exceptions.
+            <p /><c>[CanBeNull]</c></summary>
+            <param name="assemblyFile">The assembly file.<p /><c>[CanBeNull]</c></param>
+            <returns>The assembly if the assembly could be loaded; otherwise <c>null</c>.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.ReflectionExtensions.TryLoadAssemblyForReflectionOnly(System.IO.FileSystemInfo)">
+            <summary>
+            Tries to load the assembly from the specified file without generating exceptions.
+            <p /><c>[CanBeNull]</c></summary>
+            <param name="assemblyFile">The assembly file.<p /><c>[CanBeNull]</c></param>
+            <returns>The assembly if the assembly could be loaded; otherwise <c>null</c>.</returns>
+        </member>
+        <member name="T:TomsToolbox.Essentials.RegexExtensions">
+            <summary>
+            Extension methods for <see cref="T:System.Text.RegularExpressions.Regex" />.
+            </summary>
+        </member>
+        <member name="M:TomsToolbox.Essentials.RegexExtensions.Split``1(System.Text.RegularExpressions.Regex,System.String,System.Func{System.String,System.Boolean,``0})">
+            <summary>
+            Splits an input string into an array of substrings at the positions defined by the <paramref name="regex" /> regular expression.
+            <p /><c>[NotNull, ItemCanBeNull]</c></summary>
+            <typeparam name="T">The type of the returned items.</typeparam>
+            <param name="regex">The regular expression used to split the string.<p /><c>[NotNull]</c></param>
+            <param name="input">The string to split.<p /><c>[NotNull]</c></param>
+            <param name="itemGenerator">The item generator used to generate the individual fragments to return. It will get the items string value plus a boolean indicator whether the item was a match or the text in between the matches.<p /><c>[NotNull]</c></param>
+            <returns>The items generated by the <paramref name="itemGenerator" />, an alternating list of non-matched and matched fragments.</returns>
+            <remarks>
+            Similar to <see cref="M:System.Text.RegularExpressions.Regex.Split(System.String)" />, but returns and alternating list of both matches and non-matches.
+            It's up to the item generator how matched and non-matched items are handled.
+            Concatenating all unmodified fragment values will always return the original string.
+            </remarks>
+        </member>
+        <member name="T:TomsToolbox.Essentials.SemanticVersion">
+            <summary>
+            A class to parse and compare semantic versions. (<see href="https://semver.org/" />)
+            </summary>
+        </member>
+        <member name="M:TomsToolbox.Essentials.SemanticVersion.#ctor">
+            <summary>
+            Initializes a new default instance of the <see cref="T:TomsToolbox.Essentials.SemanticVersion" /> class.
+            </summary>
+        </member>
+        <member name="M:TomsToolbox.Essentials.SemanticVersion.#ctor(System.Version,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:TomsToolbox.Essentials.SemanticVersion" /> class.
+            </summary>
+            <param name="version">The version.</param>
+            <param name="suffix">The suffix, e.g. -beta23.</param>
+        </member>
+        <member name="P:TomsToolbox.Essentials.SemanticVersion.Version">
+            <summary>
+            Gets the version.
+            </summary>
+        </member>
+        <member name="P:TomsToolbox.Essentials.SemanticVersion.Suffix">
+            <summary>
+            Gets the suffix.
+            </summary>
+        </member>
+        <member name="M:TomsToolbox.Essentials.SemanticVersion.Parse(System.String)">
+            <summary>
+            Parses the specified semantic version.
+            Any prefix or suffix strings are ignored, e.g. "Version 1.2.3-beta1 with extras" is parsed as "1.2.3-beta1"
+            </summary>
+            <param name="input">The version string to parse</param>
+            <returns>The first version found in the string, or the default if no version could be detected.</returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.SemanticVersion.Equals(TomsToolbox.Essentials.SemanticVersion)">
+            <inheritdoc />
+        </member>
+        <member name="M:TomsToolbox.Essentials.SemanticVersion.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:TomsToolbox.Essentials.SemanticVersion.GetHashCode">
+            <inheritdoc />
+        </member>
+        <member name="M:TomsToolbox.Essentials.SemanticVersion.ToString">
+            <inheritdoc />
+        </member>
+        <member name="M:TomsToolbox.Essentials.SemanticVersion.CompareTo(TomsToolbox.Essentials.SemanticVersion)">
+            <inheritdoc />
+        </member>
+        <member name="M:TomsToolbox.Essentials.SemanticVersion.op_Equality(TomsToolbox.Essentials.SemanticVersion,TomsToolbox.Essentials.SemanticVersion)">
+            <summary>
+            Implements the operator ==.
+            </summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>
+            The result of the operator.
+            </returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.SemanticVersion.op_Inequality(TomsToolbox.Essentials.SemanticVersion,TomsToolbox.Essentials.SemanticVersion)">
+            <summary>
+            Implements the operator !=.
+            </summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>
+            The result of the operator.
+            </returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.SemanticVersion.op_GreaterThan(TomsToolbox.Essentials.SemanticVersion,TomsToolbox.Essentials.SemanticVersion)">
+            <summary>
+            Implements the operator &gt;.
+            </summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>
+            The result of the operator.
+            </returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.SemanticVersion.op_LessThan(TomsToolbox.Essentials.SemanticVersion,TomsToolbox.Essentials.SemanticVersion)">
+            <summary>
+            Implements the operator &lt;.
+            </summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>
+            The result of the operator.
+            </returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.SemanticVersion.op_GreaterThanOrEqual(TomsToolbox.Essentials.SemanticVersion,TomsToolbox.Essentials.SemanticVersion)">
+            <summary>
+            Implements the operator &gt;=.
+            </summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>
+            The result of the operator.
+            </returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.SemanticVersion.op_LessThanOrEqual(TomsToolbox.Essentials.SemanticVersion,TomsToolbox.Essentials.SemanticVersion)">
+            <summary>
+            Implements the operator &lt;=.
+            </summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>
+            The result of the operator.
+            </returns>
+        </member>
+        <member name="T:TomsToolbox.Essentials.SequenceAttribute">
+            <summary>
+            General usable sequence attribute to assign sequences to any object that may need to be e.g. sorted by some means.
+            </summary>
+        </member>
+        <member name="M:TomsToolbox.Essentials.SequenceAttribute.#ctor(System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:TomsToolbox.Essentials.SequenceAttribute" /> class.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="P:TomsToolbox.Essentials.SequenceAttribute.Value">
+            <summary>
+            Gets the value.
+            </summary>
+        </member>
+        <member name="T:TomsToolbox.Essentials.TextAttribute">
+            <summary>
+            Specifies a general usable attribute to associate text with an object, 
+            similar to  <see cref="T:System.ComponentModel.DisplayNameAttribute" /> or <see cref="T:System.ComponentModel.DescriptionAttribute" />, but without a predefined usage scope.
+            </summary>
+        </member>
+        <member name="M:TomsToolbox.Essentials.TextAttribute.#ctor(System.Object)">
+            <summary>
+            Initializes a new instance of the <see cref="T:TomsToolbox.Essentials.TextAttribute" /> class.
+            </summary>
+            <param name="key">A user defined key to classify the usage of this text.<p /><c>[CanBeNull]</c></param>
+        </member>
+        <member name="M:TomsToolbox.Essentials.TextAttribute.#ctor(System.Object,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:TomsToolbox.Essentials.TextAttribute" /> class.
+            </summary>
+            <param name="key">A user defined key to classify the usage of this text.<p /><c>[CanBeNull]</c></param>
+            <param name="text">The text.<p /><c>[CanBeNull]</c></param>
+        </member>
+        <member name="P:TomsToolbox.Essentials.TextAttribute.Key">
+            <summary>
+            Gets the key that classifies the usage of this text.
+            <p /><c>[CanBeNull]</c></summary>
+        </member>
+        <member name="P:TomsToolbox.Essentials.TextAttribute.Text">
+            <summary>
+            Gets the text associated with this attribute.
+            <p /><c>[CanBeNull]</c></summary>
+        </member>
+        <member name="P:TomsToolbox.Essentials.TextAttribute.TextValue">
+            <summary>
+            Gets or sets the text to be returned by the Text property.
+            <p /><c>[CanBeNull]</c></summary>
+        </member>
+        <member name="T:TomsToolbox.Essentials.TextEventArgs">
+            <summary>
+            Event arguments for events that deal with text, e.g. text changed or text received.
+            </summary>
+        </member>
+        <member name="M:TomsToolbox.Essentials.TextEventArgs.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:TomsToolbox.Essentials.TextEventArgs" /> class.
+            </summary>
+            <param name="text">The text associated with the event.<p /><c>[NotNull]</c></param>
+        </member>
+        <member name="P:TomsToolbox.Essentials.TextEventArgs.Text">
+            <summary>
+            Gets the text associated with the event.
+            <p /><c>[NotNull]</c></summary>
+        </member>
+        <member name="T:TomsToolbox.Essentials.ThreadBoundTaskScheduler">
+            <summary>
+            A <see cref="T:System.Threading.Tasks.TaskScheduler" /> that queues the tasks an runs them in one dedicated thread.
+            </summary>
+        </member>
+        <member name="M:TomsToolbox.Essentials.ThreadBoundTaskScheduler.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:TomsToolbox.Essentials.ThreadBoundTaskScheduler" /> class.
+            </summary>
+        </member>
+        <member name="P:TomsToolbox.Essentials.ThreadBoundTaskScheduler.ThreadId">
+            <summary>
+            Gets the thread identifier of the underlying thread.
+            </summary>
+        </member>
+        <member name="P:TomsToolbox.Essentials.ThreadBoundTaskScheduler.TaskFactory">
+            <summary>
+            Gets the task factory that can be used to enqueue a new task.
+            <p /><c>[NotNull]</c></summary>
+        </member>
+        <member name="M:TomsToolbox.Essentials.ThreadBoundTaskScheduler.GetScheduledTasks">
+            <summary>
+            For debugger support only, generates an enumerable of <see cref="T:System.Threading.Tasks.Task" /> instances currently queued to the scheduler waiting to be executed.
+            <p /><c>[NotNull]</c></summary>
+            <returns>
+            An enumerable that allows a debugger to traverse the tasks currently queued to this scheduler.
+            </returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.ThreadBoundTaskScheduler.QueueTask(System.Threading.Tasks.Task)">
+            <summary>
+            Queues a <see cref="T:System.Threading.Tasks.Task" /> to the scheduler.
+            </summary>
+            <param name="task">The <see cref="T:System.Threading.Tasks.Task" /> to be queued.<p /><c>[NotNull]</c></param>
+        </member>
+        <member name="M:TomsToolbox.Essentials.ThreadBoundTaskScheduler.TryExecuteTaskInline(System.Threading.Tasks.Task,System.Boolean)">
+            <summary>
+            Determines whether the provided <see cref="T:System.Threading.Tasks.Task" /> can be executed synchronously in this call, and if it can, executes it.
+            </summary>
+            <param name="task">The <see cref="T:System.Threading.Tasks.Task" /> to be executed.<p /><c>[CanBeNull]</c></param>
+            <param name="taskWasPreviouslyQueued">A Boolean denoting whether or not task has previously been queued. If this parameter is True, then the task may have been previously queued (scheduled); if False, then the task is known not to have been queued, and this call is being made in order to execute the task inline without queuing it.</param>
+            <returns>
+            A Boolean value indicating whether the task was executed inline.
+            </returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.ThreadBoundTaskScheduler.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="T:TomsToolbox.Essentials.TypeExtensions">
+            <summary>
+            Extension methods for <see cref="T:System.Type" />
+            </summary>
+        </member>
+        <member name="M:TomsToolbox.Essentials.TypeExtensions.GetSelfAndBaseTypes(System.Type)">
+            <summary>
+            Gets the type and all it's base types.
+            <p /><c>[NotNull, ItemNotNull]</c></summary>
+            <param name="type">The type.<p /><c>[NotNull]</c></param>
+            <returns>The type and all it's base types.</returns>
+        </member>
+        <member name="T:TomsToolbox.Essentials.IWeakEventListener">
+            <summary>
+            Common interface for weak event listener.
+            </summary>
+        </member>
+        <member name="M:TomsToolbox.Essentials.IWeakEventListener.Detach">
+            <summary>
+            Detaches from the subscribed event.
+            </summary>
+        </member>
+        <member name="T:TomsToolbox.Essentials.WeakEventListener`3">
+            <summary>
+            Implements a weak event listener that allows the owner to be garbage
+            collected if its only remaining link is an event handler.
+            </summary>
+            <typeparam name="TTarget">Type of the target instance listening for the event.</typeparam>
+            <typeparam name="TSource">Type of source instance for the event.</typeparam>
+            <typeparam name="TEventArgs">Type of event arguments for the event.</typeparam>
+        </member>
+        <member name="F:TomsToolbox.Essentials.WeakEventListener`3._weakTarget">
+            <summary>
+            WeakReference to the object listening for the event.
+            </summary>
+        </member>
+        <member name="F:TomsToolbox.Essentials.WeakEventListener`3._weakSource">
+            <summary>
+            To hold only a reference to source object. With this instance the WeakEventListener
+            can guarantee that the handler gets unregistered when listener is released but does not reference the source.
+            </summary>
+        </member>
+        <member name="F:TomsToolbox.Essentials.WeakEventListener`3._source">
+            <summary>
+            To hold a reference to source object. With this instance the WeakEventListener
+            can guarantee that the handler gets unregistered when listener is released.
+            </summary>
+        </member>
+        <member name="F:TomsToolbox.Essentials.WeakEventListener`3._onEventAction">
+            <summary>
+            Delegate to the method to call when the event fires.
+            </summary>
+        </member>
+        <member name="F:TomsToolbox.Essentials.WeakEventListener`3._onDetachAction">
+            <summary>
+            Delegate to the method to call when detaching from the event.
+            </summary>
+        </member>
+        <member name="M:TomsToolbox.Essentials.WeakEventListener`3.#ctor(`0,`1,System.Action{`0,System.Object,`2},System.Action{TomsToolbox.Essentials.WeakEventListener{`0,`1,`2},`1},System.Action{TomsToolbox.Essentials.WeakEventListener{`0,`1,`2},`1})">
+            <summary>
+            Initializes a new instances of the WeakEventListener class that references the source but not the target.
+            </summary>
+            <param name="target">Instance subscribing to the event. The instance will not be referenced.<p /><c>[NotNull]</c></param>
+            <param name="source">Instance providing the event. The instance will be referenced.<p /><c>[NotNull]</c></param>
+            <param name="onEventAction">The static method to call when a event is received.<p /><c>[NotNull]</c></param>
+            <param name="onAttachAction">The static action to attach to the event(s).<p /><c>[NotNull]</c></param>
+            <param name="onDetachAction">The static action to detach from the event(s).<p /><c>[NotNull]</c></param>
+        </member>
+        <member name="M:TomsToolbox.Essentials.WeakEventListener`3.#ctor(`0,System.WeakReference{`1},System.Action{`0,System.Object,`2},System.Action{TomsToolbox.Essentials.WeakEventListener{`0,`1,`2},`1},System.Action{TomsToolbox.Essentials.WeakEventListener{`0,`1,`2},`1})">
+            <summary>
+            Initializes a new instances of the WeakEventListener class that does not reference both source and target.
+            </summary>
+            <param name="target">Instance subscribing to the event. The instance will not be referenced.<p /><c>[NotNull]</c></param>
+            <param name="source">Weak reference to the instance providing the event. When using this constructor the source will not be referenced, too.<p /><c>[NotNull]</c></param>
+            <param name="onEventAction">The static method to call when a event is received.<p /><c>[NotNull]</c></param>
+            <param name="onAttachAction">The static action to attach to the event(s).<p /><c>[NotNull]</c></param>
+            <param name="onDetachAction">The static action to detach from the event(s).<p /><c>[NotNull]</c></param>
+        </member>
+        <member name="M:TomsToolbox.Essentials.WeakEventListener`3.OnEvent(System.Object,`2)">
+            <summary>
+            Handler for the subscribed event calls OnEventAction to handle it.
+            </summary>
+            <param name="source">Event source.<p /><c>[NotNull]</c></param>
+            <param name="eventArgs">Event arguments.<p /><c>[NotNull]</c></param>
+        </member>
+        <member name="M:TomsToolbox.Essentials.WeakEventListener`3.Detach">
+            <summary>
+            Detaches from the subscribed event.
+            </summary>
+        </member>
+        <member name="T:TomsToolbox.Essentials.WeakEventSource`1">
+            <summary>
+            A simple weak event source implementation; useful for static events where you don't want to keep a reference to the event sink.
+            </summary>
+            <typeparam name="TEventArgs">The type of the event arguments.</typeparam>
+            <example>
+            Use like this:
+            <code language="C#">
+            <![CDATA[
+            class SampleSource
+            {
+                private readonly WeakEventSource<EventArgs> _source = new WeakEventSource<EventArgs>();
+            
+                public event EventHandler AnyAction
+                {
+                    add => _source.Subscribe(value);
+                    remove => _source.Unsubscribe(value);
+                }
+            
+                private void OnAnyAction()
+                {
+                    _source.Raise(this, EventArgs.Empty);
+                }
+            }
+            
+            class SampleSink
+            {
+                public SampleSink()
+                {
+                    var source = new SampleSource();
+                    source.AnyAction += Source_AnyAction;
+                }
+            
+                private void Source_AnyAction(object sender, EventArgs e)
+                {
+                    ... do something
+                }
+            }
+            ]]>
+            </code>
+            </example>
+        </member>
+        <member name="M:TomsToolbox.Essentials.WeakEventSource`1.Raise(System.Object,`0)">
+            <summary>
+            Raises the event with the specified sender and argument.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see paramref="TEventArgs" /> instance containing the event data.</param>
+        </member>
+        <member name="M:TomsToolbox.Essentials.WeakEventSource`1.Subscribe(System.EventHandler{`0})">
+            <summary>
+            Subscribes the specified handler for the event.
+            </summary>
+            <param name="handler">The handler.<p /><c>[NotNull]</c></param>
+        </member>
+        <member name="M:TomsToolbox.Essentials.WeakEventSource`1.Unsubscribe(System.EventHandler{`0})">
+            <summary>
+            Unsubscribes the specified handler from the event.
+            </summary>
+            <param name="handler">The handler.<p /><c>[NotNull]</c></param>
+        </member>
+        <member name="T:TomsToolbox.Essentials.WeakReferenceExtensions">
+            <summary>
+            Extensions for <see cref="T:System.WeakReference`1" />
+            </summary>
+        </member>
+        <member name="M:TomsToolbox.Essentials.WeakReferenceExtensions.GetTargetOrDefault``1(System.WeakReference{``0})">
+            <summary>
+            Gets the target of the weak reference, if the target is still alive; otherwise null.
+            <p /><c>[CanBeNull]</c></summary>
+            <typeparam name="T">The type of the object referenced.</typeparam>
+            <param name="weakReference">The weak reference.<p /><c>[CanBeNull]</c></param>
+            <returns>The target of the weak reference, if the target is still alive; otherwise null.</returns>
+        </member>
+        <member name="T:TomsToolbox.Essentials.WeakReferenceSet`1">
+            <summary>
+            A simple set of weak references.
+            </summary>
+            <typeparam name="T">The type of the referenced objects.</typeparam>
+        </member>
+        <member name="M:TomsToolbox.Essentials.WeakReferenceSet`1.Add(`0)">
+            <summary>
+            Adds the specified element to the set.
+            </summary>
+            <param name="item">The item to add.</param>
+            <returns>
+            <c>true</c> if the element is added to the WeakReferenceSet{T} object; <c>false</c> if the element is already present.
+            </returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.WeakReferenceSet`1.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the alive items of the collection.
+            </summary>
+            <returns>
+            A System.Collections.Generic.IEnumerator{T} that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="T:TomsToolbox.Essentials.XmlExtensions">
+            <summary>
+            Extension methods for <see cref="N:System.Xml.Linq" /> objects.
+            </summary>
+        </member>
+        <member name="M:TomsToolbox.Essentials.XmlExtensions.GetAttribute(System.Xml.Linq.XElement,System.String,System.String)">
+            <summary>
+            Gets the attribute value of an XML element.
+            <p /><c>[CanBeNull]</c></summary>
+            <param name="element">The element.<p /><c>[NotNull]</c></param>
+            <param name="name">The name of the attribute.<p /><c>[NotNull]</c></param>
+            <param name="defaultValue">The default value.<p /><c>[CanBeNull]</c></param>
+            <returns>
+            The value of the attribute, or the <paramref name="defaultValue" /> if no such attribute exists
+            </returns>
+        </member>
+        <member name="M:TomsToolbox.Essentials.XmlExtensions.GetAttribute(System.Xml.Linq.XElement,System.Xml.Linq.XName,System.String)">
+            <summary>
+            Gets the attribute value of an XML element.
+            <p /><c>[CanBeNull]</c></summary>
+            <param name="element">The element.<p /><c>[NotNull]</c></param>
+            <param name="name">The name of the attribute.<p /><c>[NotNull]</c></param>
+            <param name="defaultValue">The default value.<p /><c>[CanBeNull]</c></param>
+            <returns>
+            The value of the attribute, or the <paramref name="defaultValue" /> if no such attribute exists
+            </returns>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.AllowNullAttribute">
+            <summary>Specifies that null is allowed as an input even if the corresponding type disallows it.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.DisallowNullAttribute">
+            <summary>Specifies that null is disallowed as an input even if the corresponding type allows it.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.MaybeNullAttribute">
+            <summary>Specifies that an output may be null even if the corresponding type disallows it.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.NotNullAttribute">
+            <summary>Specifies that an output will not be null even if the corresponding type allows it.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.MaybeNullWhenAttribute">
+            <summary>Specifies that when a method returns <see cref="P:System.Diagnostics.CodeAnalysis.MaybeNullWhenAttribute.ReturnValue" />, the parameter may be null even if the corresponding type disallows it.</summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.MaybeNullWhenAttribute.#ctor(System.Boolean)">
+            <summary>Initializes the attribute with the specified return value condition.</summary>
+            <param name="returnValue">
+            The return value condition. If the method returns this value, the associated parameter may be null.
+            </param>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.MaybeNullWhenAttribute.ReturnValue">
+            <summary>Gets the return value condition.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.NotNullWhenAttribute">
+            <summary>Specifies that when a method returns <see cref="P:System.Diagnostics.CodeAnalysis.NotNullWhenAttribute.ReturnValue" />, the parameter will not be null even if the corresponding type allows it.</summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.NotNullWhenAttribute.#ctor(System.Boolean)">
+            <summary>Initializes the attribute with the specified return value condition.</summary>
+            <param name="returnValue">
+            The return value condition. If the method returns this value, the associated parameter will not be null.
+            </param>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.NotNullWhenAttribute.ReturnValue">
+            <summary>Gets the return value condition.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.NotNullIfNotNullAttribute">
+            <summary>Specifies that the output will be non-null if the named parameter is non-null.</summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.NotNullIfNotNullAttribute.#ctor(System.String)">
+            <summary>Initializes the attribute with the associated parameter name.</summary>
+            <param name="parameterName">
+            The associated parameter name.  The output will be non-null if the argument to the parameter specified is non-null.
+            </param>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.NotNullIfNotNullAttribute.ParameterName">
+            <summary>Gets the associated parameter name.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute">
+            <summary>Applied to a method that will never return under any circumstance.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.DoesNotReturnIfAttribute">
+            <summary>Specifies that the method will not return if the associated Boolean parameter is passed the specified value.</summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.DoesNotReturnIfAttribute.#ctor(System.Boolean)">
+            <summary>Initializes the attribute with the specified parameter value.</summary>
+            <param name="parameterValue">
+            The condition parameter value. Code after the method will be considered unreachable by diagnostics if the argument to
+            the associated parameter matches this value.
+            </param>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.DoesNotReturnIfAttribute.ParameterValue">
+            <summary>Gets the condition parameter value.</summary>
+        </member>
+    </members>
+</doc>

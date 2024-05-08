@@ -1,0 +1,18 @@
+﻿<Window x:Class="MnS.Email_Search"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MnS"
+        mc:Ignorable="d"
+        Title="Forgot LoginID or Password" Height="109.931" Width="276.165"
+        MaxHeight="109.931"
+        MaxWidth="276.165"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="0,0,0.2,1">
+        <Border Background="#E6212021" RenderTransformOrigin="0,0" Margin="0,0,-14.6,-15"/>
+        <TextBox HorizontalAlignment="Right" Height="23" Margin="0,8,11.4,0" TextWrapping="Wrap" Text="Please enter your Outlook login email" VerticalAlignment="Top" Width="208" x:Name="txtEmail"/>
+        <Label Content="Email" Margin="-3,4,220.4,0" VerticalAlignment="Top" Foreground="AliceBlue" FontSize="12" Height="40" FontWeight="Bold" HorizontalAlignment="Right" Width="52" FlowDirection="RightToLeft"/>
+        <Button Content="Submit" HorizontalAlignment="Right" Height="23" Margin="0,36,11.4,0" VerticalAlignment="Top" Width="60" x:Name="btnSubmit" Click="Submit_Click" Cursor="Hand"/>
+    </Grid>
+</Window>

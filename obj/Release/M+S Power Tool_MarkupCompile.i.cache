@@ -1,0 +1,20 @@
+﻿M+S Power Tool
+
+
+winexe
+C#
+.cs
+D:\100-M+S_PowerTool\obj\Release\
+MnS
+none
+false
+TRACE
+D:\100-M+S_PowerTool\App.xaml
+32961620770
+
+551352297876
+196-25634043
+src\Model\Clock.xaml;src\Model\SQL_cmd.xaml;src\Model\CAL_Tab.xaml;src\Model\DateConvert.xaml;src\Model\EDM.xaml;src\Model\AutoRecord.xaml;src\Model\MessData.xaml;src\Model\Movex.xaml;src\Model\PM_Tab.xaml;src\Model\ProgressBox.xaml;src\Model\SparePart_Tab.xaml;src\Model\TestProg_Tab.xaml;src\Util\LineChart.xaml;src\Util\BoxPlot.xaml;src\Util\CAL_Dashboard.xaml;src\Util\DAT_Graph.xaml;src\Util\PM_Dashboard.xaml;src\Util\SP_Dashboard.xaml;src\View\MainWindow.xaml;src\View\MiniTool.xaml;src\View\Popup\Message.xaml;src\View\Popup\Admin_Ctrl.xaml;src\View\Popup\Config_property.xaml;src\View\Popup\Email_Search.xaml;src\View\Popup\Icon.xaml;src\View\Popup\ImageViewerWindow.xaml;src\View\Popup\Grid_Position.xaml;src\View\Popup\PixelDetector.xaml;src\View\Popup\Progress.xaml;src\View\Popup\ServerChange.xaml;src\View\Popup\User_Ctrl.xaml;src\View\Registry.xaml;
+
+False
+

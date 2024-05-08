@@ -1,0 +1,16 @@
+﻿<Window x:Class="MnS.BoxPlot"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MnS"
+        xmlns:oxy ="http://oxyplot.org/wpf"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized"
+        mc:Ignorable="d"
+        Title="BoxPlot" Height="900" Width="1100">
+    <Grid>
+        <oxy:PlotView Margin="0,0,0,30" x:Name="RegressionDiagram" Background="White" BorderThickness="0"/>
+        <Button x:Name="exp_bp" Content="Save as" Width="80" Height="30" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="2" Click="SaveChartAsImage"/>
+    </Grid>
+</Window>

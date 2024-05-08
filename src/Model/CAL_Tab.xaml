@@ -1,0 +1,110 @@
+﻿<UserControl x:Class="MnS.CAL_Tab"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:control="http://filterdatagrid.control.com/2021"
+             xmlns:local="clr-namespace:MnS"
+             xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
+             mc:Ignorable="d" 
+             d:DesignHeight="610" d:DesignWidth="1150">
+    <UserControl.Resources>
+        <Style TargetType="ComboBox">
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <dragablz:TabablzControl TabStripPlacement="Left">
+            <dragablz:TabablzControl.InterTabController>
+                <dragablz:InterTabController />
+            </dragablz:TabablzControl.InterTabController>
+            <TabItem Header="DASHBOARD" Cursor="Hand" FontSize="12">
+                <local:CAL_Dashboard/>
+            </TabItem>
+            <TabItem Header="DATAFILTER" Cursor="Hand" FontSize="12">
+                <Grid>
+                    <Label Margin="160,10,20,0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Global search"  FontWeight="Bold" Foreground="White"/>
+                    <TextBox Height="22" Width="200" Margin='250,10,0,0' VerticalAlignment="Top" HorizontalAlignment="Left" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" />
+                    <Button HorizontalAlignment="Left" VerticalAlignment="Top" Margin="460,10,0,0" Width="75" Height="22" Command="{Binding RefreshCommand}" Content="Reset list" Cursor="Hand" />
+                    <control:FilterDataGrid
+                        x:Name="cal_schgrid"
+                        Grid.Row="2"
+                        Margin="10,40,10,40"
+                        AlternatingRowBackground="WhiteSmoke"
+                        AlternationCount="2"
+                        AutoGenerateColumns="True"
+                        Background="White"
+                        CanUserAddRows="False"
+                        MinColumnWidth="60"
+                        DateFormatString="d"
+                        FilterLanguage="English"
+                        HorizontalGridLinesBrush="LightGray"
+                        IsReadOnly="True"
+                        ItemsSource="{Binding FilteredList, UpdateSourceTrigger=PropertyChanged}"
+                        RowHeaderWidth="40"
+                        ShowElapsedTime="True"
+                        ShowStatusBar="True"
+                        VerticalGridLinesBrush="LightGray"
+                        VerticalScrollBarVisibility="Visible"
+                        HorizontalScrollBarVisibility="Visible"
+                        VirtualizingStackPanel.IsVirtualizing="True"/>
+                    <Button Content="Load Data" HorizontalAlignment="Left" Margin="10,10,10,0" VerticalAlignment="Top" Width="75" Height="22" Click="Filterload_Click"/>
+                    <Button Content="Send" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75" Height="22" Click="CALSend_Click"/>
+                    <Button Content="Export" HorizontalAlignment="Right" Margin="0,0,100,10" VerticalAlignment="Bottom" Width="75" Height="22" Click="CALexport_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="MSP" Cursor="Hand" FontSize="12">
+                <Grid>
+                    <DataGrid x:Name="cal_excel" Margin="10,40,10,40"/>
+                    <Button x:Name="btncalSend" Content="Send" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75" Height="22" Click="MSPSend_Click"/>
+                    <Button x:Name="btncalExport" Content="Export" HorizontalAlignment="Right" Margin="0,0,100,10" VerticalAlignment="Bottom" Width="75" Height="22" Click="ExportMSP_Click"/>
+                    <Label Content="Select schedule: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,10" FontSize="12" FontWeight="Bold" Foreground="White"/>
+                    <ComboBox x:Name="cal_month" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="22" Margin="110,10,0,0"/>
+                    <ComboBox x:Name="cal_year" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="22" Margin="220,10,0,0"/>
+                    <Button x:Name="calmsp_src" Content="Search" HorizontalAlignment="Left" Margin="330,10,0,0" VerticalAlignment="Top" Width="85" Height="22" Click="MSPsearch_Click"/>
+                    <Label Content="TAMSUI: " HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,10" FontSize="14" FontWeight="Bold" Foreground="White"/>
+                    <Label x:Name="nmbTamsui" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="75,0,0,10" FontSize="14" FontStyle="Italic" Foreground="Wheat"/>
+                    <Label Content="devices" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="100,0,0,10" FontSize="14" FontStyle="Italic" Foreground="Wheat"/>
+                    <Label Content="TECHMASTER: " HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="200,0,0,10" FontSize="14" FontWeight="Bold" Foreground="White"/>
+                    <Label x:Name="nmbTech" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="305,0,0,10" FontSize="14" FontStyle="Italic" Foreground="Wheat"/>
+                    <Label Content="devices" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="330,0,0,10" FontSize="14" FontStyle="Italic" Foreground="Wheat"/>
+                    <Button x:Name="calrfmsp_src" Content="Create MSP" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Width="85" Height="22" Click="MSPRefresh_Click"/>
+                    <ComboBox x:Name="callocmsp_src" SelectedIndex="0" HorizontalAlignment="Right" Margin="0,10,110,0" VerticalAlignment="Top" Width="85" Height="22">
+                        <ComboBoxItem Content="M+S TM"/>
+                        <ComboBoxItem Content="M+S PE"/>
+                    </ComboBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="FILE VIEWER" Cursor="Hand" FontSize="12">
+                <Grid>
+                    <WebBrowser x:Name="cal_rcView" Margin="10,40,10,10" HorizontalAlignment="Left" Width="550"/>
+                    <Label Content="Device ID" HorizontalAlignment="Left" Margin="10,10,10,0" VerticalAlignment="Top" Width="75" Height="22"/>
+                    <TextBox x:Name="cal_jigname" HorizontalAlignment="Left" Margin="80,10,10,0" VerticalAlignment="Top" Width="130" Height="22"/>
+                    <Label Content="Record time" HorizontalAlignment="Left" Margin="220,10,10,0" VerticalAlignment="Top" Width="75" Height="22"/>
+                    <ComboBox x:Name="cal_rctime" Foreground="Black" HorizontalAlignment="Left" Margin="290,10,10,0" VerticalAlignment="Top" Width="75" Height="22"/>
+                    <Button Content="Show record" HorizontalAlignment="Left" Margin="380,10,10,0" VerticalAlignment="Top" Width="75" Height="22" Click="ShowRecord_Click"/>
+                    <Label Content="CALIBRATION DATA" HorizontalAlignment="Left" Margin="650,10,10,0" VerticalAlignment="Top" Height="22"/>
+                    <DataGrid x:Name="cal_rcFrame" Margin="570,40,10,10"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="AUTO LINK" Cursor="Hand" FontSize="12">
+                <Grid>
+                    <DataGrid x:Name="pdf_grid" Margin="10,40,420,40" SelectionChanged="Pdfshow_SelectionChanged"/>
+                    <WebBrowser x:Name="pdf_show" HorizontalAlignment="Right" Margin="10,40,10,40" Width="400"/>
+                    <Button Content=" Select records folder " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="22" Click="SelectFolderButton_Click"/>
+                    <Label Content="" Width="200" Height="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,10" FontSize="10" FontWeight="Bold" Foreground="Navy"/>
+                    <TextBlock x:Name="scrcal_link" Text="..." TextTrimming="CharacterEllipsis" TextAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Top" Width="350" Height="22" Margin="130,13,0,0" Background="Transparent"/>
+                    <Label Content="Status:" VerticalAlignment="Bottom" Margin="10,0,0,5" Foreground="Wheat"/>
+                    <TextBlock x:Name="stt_label" Text="..." VerticalAlignment="Bottom" Height="22" Margin="55,0,0,2.5" Background="Transparent" Foreground="White" TextAlignment="Left" FontStyle="Italic" FontSize="11"/>
+                    <Button Content="Run" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75" Height="22" Click="Run_Click"/>
+                    <Button Content="Create Link" HorizontalAlignment="Right" Margin="0,0,100,10" VerticalAlignment="Bottom" Width="75" Height="22" Click="Createlink_Click"/>
+                </Grid>
+            </TabItem>
+        </dragablz:TabablzControl>
+        <ProgressBar x:Name="loadingProg" Height="7" VerticalAlignment="Bottom" Margin="80,0,10,-0.4" IsIndeterminate="False" Visibility="Collapsed">
+            <ProgressBar.ToolTip>
+                <ToolTip Content="{Binding ProgressTooltip}" />
+            </ProgressBar.ToolTip>
+        </ProgressBar>
+    </Grid>
+</UserControl>

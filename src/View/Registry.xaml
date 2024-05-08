@@ -1,0 +1,206 @@
+﻿<Window x:Class="MnS.Registry"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Registry" 
+        Height="561" 
+        Width="800"
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True"
+        Background="Transparent"
+        WindowStyle="None">
+    <Window.Resources>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="FontSize" Value="11"/>
+        </Style>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="{x:Type ComboBox}">
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Background" Value="DimGray"/>
+            <Setter Property="Foreground" Value="Wheat"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="2">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" To="DarkGray" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid HorizontalAlignment="Left" Margin="0,0,0,0" Width="800">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="561"/>
+        </Grid.RowDefinitions>
+
+        <Border Background="#E6212021" RenderTransformOrigin="0.5,0.5" Height="561" VerticalAlignment="Top">
+            <Border.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="0"/>
+                    <RotateTransform Angle="0"/>
+                    <TranslateTransform X="0"/>
+                </TransformGroup>
+            </Border.RenderTransform>
+            <Rectangle Margin="500,0,0,0" StrokeStartLineCap="Triangle" StrokeEndLineCap="Triangle" StrokeThickness="5" Fill="DarkSlateBlue">
+                <Rectangle.Stroke>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="DarkSlateBlue" Offset="0.0"/>
+                        <GradientStop Color="#FFFDFD7A" Offset="1.1"/>
+                    </LinearGradientBrush>
+                </Rectangle.Stroke>
+            </Rectangle>
+        </Border>
+
+        <TextBlock Text="REGISTRATION" FontSize="25" Foreground="AliceBlue"  VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,10,26,0" Width="169" TextAlignment="Center" Height="33"/>
+        <TextBlock Text="LOGIN" FontSize="25" Foreground="AliceBlue" HorizontalAlignment="Right" Margin="0,371,26,0" Width="169" VerticalAlignment="Top" TextAlignment="Center" Height="33"/>
+
+        <!-- User Registration Section -->
+        <Label Content="User ID" Margin="0,50,200,0" Foreground="AliceBlue" FontSize="12" FontWeight="Bold" Height="35" VerticalAlignment="Top" HorizontalAlignment="Right" Width="77" FlowDirection="RightToLeft"/>
+        <TextBox x:Name="txtUserID" HorizontalAlignment="Right" Height="23" Margin="0,50,26,0" TextWrapping="Wrap" Text="Please type your employee ID" VerticalAlignment="Top" Width="169" IsEnabled="False" GotKeyboardFocus="TextBox_GotKeyboardFocus"/>
+
+        <Label Content="Full Name" Margin="0,90,200,0" VerticalAlignment="Top" Foreground="AliceBlue" FontSize="12" Height="40" FontWeight="Bold" HorizontalAlignment="Right" Width="77" FlowDirection="RightToLeft"/>
+        <TextBox HorizontalAlignment="Right" Height="23" Margin="0,90,26,0" TextWrapping="Wrap" Text="Please type your full name" VerticalAlignment="Top" Width="169" x:Name="txtFullName" IsEnabled="False" GotKeyboardFocus="TextBox_GotKeyboardFocus"/>
+
+        <Label Content="Department" Margin="0,130,200,0" VerticalAlignment="Top" Foreground="AliceBlue" FontSize="12" Height="40" FontWeight="Bold" HorizontalAlignment="Right" Width="77" FlowDirection="RightToLeft"/>
+        <ComboBox x:Name="cmbDepartment" HorizontalAlignment="Right" Margin="0,130,26,0" VerticalAlignment="Top" Width="169" Height="23" IsEnabled="False" RenderTransformOrigin="0.571,-0.904" Cursor="Hand"/>
+
+        <Label Content="Email" Margin="0,170,200,0" VerticalAlignment="Top" Foreground="AliceBlue" FontSize="12" Height="40" FontWeight="Bold" HorizontalAlignment="Right" Width="77" FlowDirection="RightToLeft"/>
+        <TextBox HorizontalAlignment="Right" Height="23" Margin="0,170,26,0" TextWrapping="Wrap" Text="Please type your Outlook mail" VerticalAlignment="Top" Width="169" x:Name="txtEmail" IsEnabled="False" GotKeyboardFocus="TextBox_GotKeyboardFocus"/>
+
+        <Label Content="Login ID" HorizontalAlignment="Right" Margin="0,210,200,0" VerticalAlignment="Top" Width="77" Foreground="AliceBlue" FontSize="12" Height="40" FontWeight="Bold" FlowDirection="RightToLeft"/>
+        <TextBox HorizontalAlignment="Right" Height="23" Margin="0,210,26,0" TextWrapping="Wrap" Text="Please type your login ID" VerticalAlignment="Top" Width="169" x:Name="txtNewLoginID" IsEnabled="False" GotKeyboardFocus="TextBox_GotKeyboardFocus"/>
+
+        <Label Content="New Password" Margin="0,250,200,0" VerticalAlignment="Top" Foreground="AliceBlue" FontSize="12" Height="40" FontWeight="Bold" HorizontalAlignment="Right" Width="98" FlowDirection="RightToLeft"/>
+        <PasswordBox HorizontalAlignment="Right" Height="23" Margin="0,250,26,0" VerticalAlignment="Top" Width="169" x:Name="txtNewPassword" IsEnabled="False" GotKeyboardFocus="TextBox_GotKeyboardFocus"/>
+
+        <Label Content="Confirm Pw" Margin="0,291,200,0" VerticalAlignment="Top" Foreground="AliceBlue" FontSize="12" Height="40" FontWeight="Bold" HorizontalAlignment="Right" Width="77" FlowDirection="RightToLeft"/>
+        <PasswordBox HorizontalAlignment="Right" Height="23" Margin="0,291,26,0" VerticalAlignment="Top" Width="169" x:Name="txtCfNewPassword" IsEnabled="False" GotKeyboardFocus="TextBox_GotKeyboardFocus"/>
+
+        <Button Content="Submit" HorizontalAlignment="Right" Height="23" Margin="0,331,95,0" VerticalAlignment="Top" Width="60" x:Name="btnSubmit" Visibility="Hidden"  Click="Submit_Click" Cursor="Hand"/>
+
+        <!-- User Login Section -->
+        <Label Content="Login ID" Margin="0,411,200,0" VerticalAlignment="Top" Foreground="AliceBlue" FontSize="12" Height="40" FontWeight="Bold" HorizontalAlignment="Right" Width="77" FlowDirection="RightToLeft"/>
+        <TextBox x:Name="txtLoginID" HorizontalAlignment="Right" Height="23" Margin="0,411,26,0" TextWrapping="Wrap" Text="Please type your login ID" VerticalAlignment="Top" Width="169" GotKeyboardFocus="TextBox_GotKeyboardFocus" KeyDown="TxtLoginID_KeyDown"/>
+
+        <Label Content="Password" Margin="0,451,200,0" VerticalAlignment="Top" Foreground="AliceBlue" FontSize="12" Height="37" FontWeight="Bold" HorizontalAlignment="Right" Width="77" FlowDirection="RightToLeft"/>
+        <PasswordBox x:Name="txtPassword" HorizontalAlignment="Right" Height="23" Margin="0,451,26,0" VerticalAlignment="Top" Width="169" GotKeyboardFocus="TextBox_GotKeyboardFocus" KeyDown="TxtPassword_KeyDown"/>
+
+        <Label Content="Design and Build by MnS"  Margin="20,529,0,0"  VerticalAlignment="Top"  Foreground="AliceBlue"  FontSize="8" Height="25"  FontWeight="Bold"  HorizontalAlignment="Left" FlowDirection="RightToLeft"/>
+        <Label x:Name="app_version" Content="Version 1.0"  Margin="20,516,0,0"  VerticalAlignment="Top"  Foreground="AliceBlue"  FontSize="8" Height="25"  FontWeight="Bold"  HorizontalAlignment="Left"  FlowDirection="RightToLeft" RenderTransformOrigin="0.319,-0.72"/>
+
+        <Grid>
+            <TextBlock Grid.Row="0" Grid.Column="0" Margin="517,529,0,9.8">
+                <Hyperlink Click="Hyperlink_Click">
+                    Forgot LoginID or Password
+                </Hyperlink>
+            </TextBlock>
+        </Grid>
+
+        <!-- Buttons -->
+        <Button Content="Login" HorizontalAlignment="Right" Margin="0,491,26,0" Width="60" Click="Login_Click" Height="23" VerticalAlignment="Top" Cursor="Hand"/>
+        <Button Content="Exit" HorizontalAlignment="Right" Height="23" Margin="0,491,95,0" VerticalAlignment="Top" Width="60" Click="Exit_Click" Cursor="Hand"/>
+        <Button Content="Register" HorizontalAlignment="Right" Height="23" Margin="0,331,26,0" VerticalAlignment="Top" Width="60" x:Name="btnRegister" Click="Register_Click" Cursor="Hand"/>
+
+        <!-- Animation -->
+        <Path x:Name="MyPath" Data="M534.67,564.54c7.46,12,8.27,24.72,2.09,33-6.47,8.66-19.54,11.08-33.51,6.2l.91,1.12a184.44,184.44,0,0,0-121.52-45.43c-102.21,0-185.06,82.75-185.06,184.84S280.43,929.1,382.64,929.1,567.7,846.35,567.7,744.27C567.7,584,672,454,800.65,454h61.23v464.9a20.38,20.38,0,1,0,40.75,0V454h213c100.68,0,182.29,81.62,182.29,182.3s-81.61,182.3-182.29,182.3h-118c-13.82,0-25-11.45-25-25.57s11.2-25.56,25-25.56h118a132.26,132.26,0,0,0,0-264.51H944.55V913.6a62.3,62.3,0,1,1-124.59,0V503H781.35C690.43,503,616.72,610,616.72,742c0,129.16-104.8,233.87-234.08,233.87S148.55,871.19,148.55,742s104.8-233.86,234.09-233.86a233.38,233.38,0,0,1,153.71,57.47" StrokeDashOffset="0" StrokeThickness="5" Stretch="Fill" StrokeStartLineCap="Triangle" StrokeEndLineCap="Triangle" Margin="51.2,50,342,0" StrokeDashArray="500" SnapsToDevicePixels="True" RenderTransformOrigin="0.517,-0.022" Height="200" VerticalAlignment="Top">
+            <Path.Stroke>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop x:Name="B1" Color="DarkSlateBlue" Offset="0.0"/>
+                    <GradientStop x:Name="B2" Color="#FFFDFD7A" Offset="1.1"/>
+                </LinearGradientBrush>
+            </Path.Stroke>
+            <Path.Triggers>
+                <EventTrigger RoutedEvent="Path.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard x:Name="AnimationStoryboard" Completed="AnimationStoryboard_Completed">
+                            <DoubleAnimation Storyboard.TargetName="MyPath" Storyboard.TargetProperty="StrokeDashOffset" From="1000" To="0" Duration="0:0:20" BeginTime="0:0:0"/>
+                            <DoubleAnimation Storyboard.TargetName="B1" Storyboard.TargetProperty="Offset" From="0.0" To="1.1" AutoReverse="True" BeginTime="0:0:0" Duration="0:0:5"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Path.Triggers>
+        </Path>
+        <TextBlock Margin="10,268,427,246.8" Foreground="White" Text="M+S Management Tool" FontSize="25" TextAlignment="Center" x:Name="TxtAnime" FontStretch="Expanded" FontFamily="Bahnschrift Light" RenderTransformOrigin="0.497,1.097">
+            <TextBlock.Triggers>
+                <EventTrigger RoutedEvent="TextBlock.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <StringAnimationUsingKeyFrames Storyboard.TargetName="TxtAnime" Storyboard.TargetProperty="Text" BeginTime="0:0:8.5" Duration="0:0:3">
+                                <DiscreteStringKeyFrame Value="" KeyTime="0:0:0"/>
+                                <DiscreteStringKeyFrame Value="M" KeyTime="0:0:0.15"/>
+                                <DiscreteStringKeyFrame Value="M +" KeyTime="0:0:0.3"/>
+                                <DiscreteStringKeyFrame Value="M + S" KeyTime="0:0:0.45"/>
+                                <DiscreteStringKeyFrame Value="M + S  M" KeyTime="0:0:0.6"/>
+                                <DiscreteStringKeyFrame Value="M + S  M a" KeyTime="0:0:0.75"/>
+                                <DiscreteStringKeyFrame Value="M + S  M a n" KeyTime="0:0:0.9"/>
+                                <DiscreteStringKeyFrame Value="M + S  M a n a" KeyTime="0:0:1.05"/>
+                                <DiscreteStringKeyFrame Value="M + S  M a n a g" KeyTime="0:0:1.2"/>
+                                <DiscreteStringKeyFrame Value="M + S  M a n a g e" KeyTime="0:0:1.35"/>
+                                <DiscreteStringKeyFrame Value="M + S  M a n a g e m" KeyTime="0:0:1.5"/>
+                                <DiscreteStringKeyFrame Value="M + S  M a n a g e m e" KeyTime="0:0:1.65"/>
+                                <DiscreteStringKeyFrame Value="M + S  M a n a g e m e n" KeyTime="0:0:1.8"/>
+                                <DiscreteStringKeyFrame Value="M + S  M a n a g e m e n t" KeyTime="0:0:1.95"/>
+                                <DiscreteStringKeyFrame Value="M + S  M a n a g e m e n t  " KeyTime="0:0:2.1"/>
+                                <DiscreteStringKeyFrame Value="M + S  M a n a g e m e n t  T" KeyTime="0:0:2.25"/>
+                                <DiscreteStringKeyFrame Value="M + S  M a n a g e m e n t  T o" KeyTime="0:0:2.4"/>
+                                <DiscreteStringKeyFrame Value="M + S  M a n a g e m e n t  T o o" KeyTime="0:0:2.55"/>
+                                <DiscreteStringKeyFrame Value="M + S  M a n a g e m e n t  T o o l" KeyTime="0:0:2.7"/>
+                                <DiscreteStringKeyFrame Value="M+S Management Tool" KeyTime="0:0:3"/>
+                            </StringAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </TextBlock.Triggers>
+        </TextBlock>
+        <Image Margin="75,278,309,5.8" Source="\assets\images\background.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="0.212"/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="0.596"/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Rectangle HorizontalAlignment="Left" Height="33" Margin="506,10,0,0" VerticalAlignment="Top" Width="268">
+            <Rectangle.Stroke>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="DarkSlateBlue" Offset="0.0"/>
+                    <GradientStop Color="#FFFDFD7A" Offset="1.1"/>
+                </LinearGradientBrush>
+            </Rectangle.Stroke>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Height="33" Margin="506,371,0,0" VerticalAlignment="Top" Width="222">
+            <Rectangle.Stroke>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="DarkSlateBlue" Offset="0.0"/>
+                    <GradientStop Color="#FFFDFD7A" Offset="1.1"/>
+                </LinearGradientBrush>
+            </Rectangle.Stroke>
+        </Rectangle>
+    </Grid>
+</Window>

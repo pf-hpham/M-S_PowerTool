@@ -1,0 +1,86 @@
+﻿<Window x:Class="MnS.User_Ctrl"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStartupLocation="CenterScreen"
+        Title="User Control" Height="440" Width="900" Background="#E6212021"
+        ResizeMode="NoResize" WindowStyle="SingleBorderWindow">
+    <Window.Resources>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="Wheat"/>
+        </Style>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="Wheat"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Background" Value="DimGray"/>
+            <Setter Property="Foreground" Value="Wheat"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="2">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" To="DarkGray" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid>
+            <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,60,0,0" Width="300" Height="290">
+                <Image x:Name="user_image" Source="/assets/images/user.png" Stretch="Fill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            </Grid>
+            <TextBlock Text="____USER CONTROL ________________________________________________________" Foreground="#FFA989A9" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,10,0,0" FontSize="30" FontWeight="DemiBold"/>
+            <Label Content="User Name: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="350,70,0,0"/>
+            <Label Content="User ID: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="350,100,0,0"/>
+            <Label Content="Department: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="350,130,0,0"/>
+            <Label Content="Email: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="350,160,0,0"/>
+            <Label Content="Right Access: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="350,190,0,0"/>
+            <Label Content="Old Password: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="350,270,0,0"/>
+            <Label Content="New Password: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="350,300,0,0"/>
+            <Label Content="Confirm Password: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="350,330,0,0"/>
+            <TextBox x:Name="user_name" Text="--Full Name--" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="530,70,0,0" Foreground="White"/>
+            <TextBox x:Name="user_id" Text="--Employee ID--" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="530,100,0,0" Foreground="White"/>
+            <TextBox x:Name="user_des" Text="--Department--" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="530,130,0,0" Foreground="White"/>
+            <TextBox x:Name="user_email" Text="--abc@vn.pepperl-fuchs.com--" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="530,160,0,0" Foreground="White"/>
+            <TextBox x:Name="user_right" Text="--Right Access--" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="530,190,0,0" Foreground="White"/>
+            <PasswordBox x:Name="old_pw" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,130,110" Width="220" Height="22" IsEnabled="False"/>
+            <PasswordBox x:Name="new_pw" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,130,80" Width="220" Height="22" IsEnabled="False"/>
+            <PasswordBox x:Name="cf_pw" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,130,50" Width="220" Height="22" IsEnabled="False"/>
+            <Button x:Name="choose_image" Content="Choose Image" HorizontalAlignment="Left" Margin="100,370,0,0" VerticalAlignment="Top" Width="120" Height="25" Click="ChooseImage_Click"/>
+            <Button x:Name="User_edit" Content="Edit" HorizontalAlignment="Left" Margin="535,230,0,0" VerticalAlignment="Top" Width="100" Height="25" Click="User_edited"/>
+            <Button x:Name="User_save" Content="Save" HorizontalAlignment="Left" Margin="655,230,0,0" VerticalAlignment="Top" Width="100" Height="25" IsEnabled="False" Click="User_saved"/>
+            <Button Content="Change Password" HorizontalAlignment="Left" Margin="535,370,0,0" VerticalAlignment="Top" Width="100" Height="25" Click="Change_pw"/>
+            <Button x:Name="pw_save" Content="Save" HorizontalAlignment="Left" Margin="655,370,0,0" VerticalAlignment="Top" Width="100" Height="25" Click="Save_pw"/>
+        </Grid>
+    </Grid>
+</Window>

@@ -1,0 +1,75 @@
+﻿<Window x:Class="MnS.Admin_Ctrl"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Admin Control" 
+        Height="476.573" Width="800"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="{x:Type DataGrid}">
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="Wheat"/>
+            <Setter Property="FontStyle" Value="Normal"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+        </Style>
+        <Style TargetType="{x:Type DataGridRow}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        <Style TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="Orange"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="{x:Type DataGridCell}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="BorderThickness" Value="0.5"/>
+        </Style>
+        <Style TargetType="{x:Type DataGridRowHeader}">
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="Wheat"/>
+        </Style>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Background" Value="DimGray"/>
+            <Setter Property="Foreground" Value="Wheat"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="2">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" To="DarkGray" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Border Background="#E6212021" RenderTransformOrigin="0.5,0.5" Margin="0,0,0,-3"/>
+        <ComboBox x:Name="comboBox1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,280,0" Width="100" SelectionChanged="Combo1_SelectionChanged"/>
+        <ComboBox x:Name="comboBox2" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,70,0" Width="200"/>
+        <Button x:Name="btnSearch" Content="Search" VerticalAlignment="Top" Margin="0,18,10,0" HorizontalAlignment="Right" Width="50" Height="24" Cursor="Hand" Click="BtnSearch_Click"/>
+        <DataGrid x:Name="userGridView" Margin="10,50,10,40" AutoGenerateColumns="True" IsReadOnly="False" GridLinesVisibility="None"/>
+        <Button x:Name="btnSave" Content="Save" Margin="0,0,10,10" RenderTransformOrigin="1.673,0.386" HorizontalAlignment="Right" Width="64" Height="20" VerticalAlignment="Bottom" Cursor="Hand" Click="BtnSave_Click"/>
+        <TextBlock Text="ADMINISTRATOR CONTROL" FontSize="25" Foreground="#FFA989A9" VerticalAlignment="Top" Margin="20,10,0,0" TextAlignment="Center" Height="33" HorizontalAlignment="Left" Width="313"/>
+        <Label Content="Database" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,310,0" Foreground='#FFA989A9'/>
+        <Label Content="Data Table" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,180,0" Foreground='#FFA989A9'/>
+    </Grid>
+</Window>
